@@ -1,0 +1,2576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Libro I — Gobierno, Administración y Control Institucional | Aldea Mayab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+:root{
+  --bg:#F4F6F5;--white:#FFFFFF;--ink:#111816;--ink-soft:#2C3A30;--ink-muted:#5A6E60;
+  --accent:#1F5C38;--accent-mid:#2E7D50;--accent-pale:#E8F4ED;
+  --sidebar-bg:#0D1A11;--sidebar-w:285px;--rule:#D0DAD3;
+  --red:#C0392B;--red-pale:#FDECEA;--amber:#C87D0A;--amber-pale:#FDF3E3;
+  --blue:#1A5C8A;--blue-pale:#E8F0F8;--radius:6px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh;font-size:14px;line-height:1.6;}
+/* ── SIDEBAR ── */
+#sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--sidebar-bg);position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:100;overflow-y:auto;}
+.sb-header{padding:22px 18px 16px;border-bottom:1px solid #1C301F;position:sticky;top:0;background:var(--sidebar-bg);z-index:10;}
+.sb-logo{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#5A9A68;margin-bottom:8px;}
+.sb-book{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#72D48A;margin-bottom:3px;}
+.sb-title{font-size:12.5px;font-weight:700;color:#E0EEE4;line-height:1.3;}
+.sb-search{position:sticky;top:0;z-index:5;background:var(--sidebar-bg, #0D1A11);padding:9px 12px;border-bottom:1px solid #1C301F;}
+.sb-search input{width:100%;background:#152019;border:1px solid #253828;border-radius:4px;padding:6px 9px;font-size:11px;color:#C0DEC8;font-family:'Inter',sans-serif;outline:none;}
+.sb-search input:focus{border-color:#72D48A;}
+.sb-search input::placeholder{color:#3A5A42;}
+nav{padding:6px 0 40px;}
+.nav-group{margin-bottom:1px;}
+.nav-group-btn{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;cursor:pointer;border-left:3px solid transparent;transition:all .15s;}
+.nav-group-btn:hover{background:rgba(114,212,138,.08);}
+.nav-group-btn.active{border-left-color:#72D48A;background:rgba(114,212,138,.12);}
+.nav-group-label{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#B8DEC0;}
+.nav-group-btn.active .nav-group-label{color:#72D48A;}
+.nav-arrow{font-size:8px;color:#3A5A42;transition:transform .2s;}
+.nav-group.open .nav-arrow{transform:rotate(90deg);}
+.nav-items{display:none;padding-bottom:4px;}
+.nav-group.open .nav-items{display:block;}
+.nav-link{display:block;padding:6px 16px 6px 28px;font-size:12px;font-weight:500;color:#A8D0B0;cursor:pointer;transition:all .15s;border-left:3px solid transparent;line-height:1.4;}
+.nav-link:hover{color:#E0F0E4;background:rgba(114,212,138,.07);}
+.nav-link.active{color:#FFFFFF;background:rgba(114,212,138,.14);border-left-color:#72D48A;font-weight:600;}
+.nav-sub{display:block;padding:4px 16px 4px 40px;font-size:11px;color:#6EA87A;cursor:pointer;transition:color .15s;}
+.nav-sub:hover{color:#A8D0B0;}
+.nav-divider{height:1px;background:#1C301F;margin:5px 16px;}
+/* ── MAIN ── */
+#main{margin-left:var(--sidebar-w);flex:1;}
+#topbar{height:52px;background:var(--white);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:0 36px;position:sticky;top:0;z-index:50;}
+#breadcrumb{font-size:12px;color:var(--ink-muted);}
+#breadcrumb strong{color:var(--ink-soft);font-weight:600;}
+.topbar-meta{display:flex;gap:14px;font-size:11px;color:var(--ink-muted);flex-shrink:0;}
+.meta-code{font-family:monospace;color:var(--accent);font-weight:700;letter-spacing:.05em;}
+#content{padding:32px 44px 80px;max-width:900px;}
+.page{display:none;}
+.page.active{display:block;animation:fadeUp .2s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+/* ── COMPONENTS ── */
+.proc-eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:5px;}
+.proc-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:500;color:var(--ink);line-height:1.12;margin-bottom:6px;}
+.proc-subtitle{font-size:13.5px;color:var(--ink-muted);margin-bottom:22px;line-height:1.5;}
+.info-table{width:100%;border-collapse:collapse;border:1px solid var(--rule);margin-bottom:24px;background:var(--white);border-radius:var(--radius);overflow:hidden;}
+.info-table td{padding:10px 14px;border:1px solid var(--rule);vertical-align:top;}
+.it-label{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-muted);display:block;margin-bottom:2px;}
+.it-value{font-weight:600;color:var(--ink);font-size:13px;}
+.it-accent{background:var(--accent);}
+.it-accent .it-label{color:rgba(255,255,255,.65);}
+.it-accent .it-value{color:white;}
+.it-red{background:var(--red);}
+.it-red .it-label{color:rgba(255,255,255,.65);}
+.it-red .it-value{color:white;}
+.sec-h{display:flex;align-items:center;gap:10px;margin:24px 0 12px;}
+.sec-num{width:26px;height:26px;background:var(--accent);color:white;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;border-radius:4px;flex-shrink:0;}
+.sec-title{font-size:15px;font-weight:700;color:var(--ink);border-bottom:2px solid var(--accent-pale);padding-bottom:5px;flex:1;}
+.act-table{width:100%;border-collapse:collapse;margin-bottom:6px;font-size:13px;}
+.act-table thead tr{background:var(--accent);color:white;}
+.act-table thead th{padding:9px 12px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.act-table tbody tr:nth-child(even){background:var(--accent-pale);}
+.act-table tbody tr:hover{background:#D0E8D8;}
+.act-table td{padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5;color:var(--ink-soft);}
+.sn{font-weight:800;color:var(--accent);font-size:16px;text-align:center;width:36px;}
+.s-name{font-weight:700;color:var(--ink);font-size:13px;margin-bottom:2px;}
+.resp{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em;margin-bottom:3px;}
+.resp-g{background:var(--accent-pale);color:var(--accent);}
+.resp-r{background:var(--red-pale);color:var(--red);}
+.resp-a{background:var(--amber-pale);color:var(--amber);}
+.resp-b{background:var(--blue-pale);color:var(--blue);}
+.alert{display:flex;gap:11px;padding:12px 14px;border-radius:var(--radius);margin:10px 0;font-size:13px;line-height:1.55;}
+.alert-icon{font-size:17px;flex-shrink:0;margin-top:1px;}
+.alert-body strong{display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px;}
+.a-green{background:var(--accent-pale);border-left:4px solid var(--accent-mid);color:var(--ink-soft);}
+.a-green strong{color:var(--accent);}
+.a-red{background:var(--red-pale);border-left:4px solid var(--red);color:#6B1A14;}
+.a-red strong{color:var(--red);}
+.a-amber{background:var(--amber-pale);border-left:4px solid var(--amber);color:#5A3A0A;}
+.a-amber strong{color:var(--amber);}
+.a-blue{background:var(--blue-pale);border-left:4px solid var(--blue);color:#1A3050;}
+.a-blue strong{color:var(--blue);}
+.step-list{list-style:none;margin:6px 0;}
+.step-list li{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #EBF0EC;font-size:13px;color:var(--ink-soft);line-height:1.5;}
+.step-list li:last-child{border-bottom:none;}
+.step-n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:var(--accent);color:white;border-radius:50%;font-size:10px;font-weight:800;flex-shrink:0;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+.info-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:4px;}
+.info-card{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);padding:13px 14px;}
+.ic-label{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:5px;}
+.ic-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.ic-body{font-size:12px;color:var(--ink-muted);line-height:1.5;}
+.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em;}
+.b-g{background:var(--accent-pale);color:var(--accent);}
+.b-a{background:var(--amber-pale);color:var(--amber);}
+.b-r{background:var(--red-pale);color:var(--red);}
+/* RACI */
+.raci-table{width:100%;border-collapse:collapse;font-size:12px;}
+.raci-table th{background:var(--accent);color:white;padding:8px 10px;text-align:center;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.raci-table th:first-child{text-align:left;}
+.raci-table td{padding:9px 10px;border-bottom:1px solid var(--rule);text-align:center;font-size:12px;color:var(--ink-soft);}
+.raci-table td:first-child{text-align:left;font-weight:600;font-size:12.5px;color:var(--ink);}
+.raci-table tr:nth-child(even) td{background:var(--accent-pale);}
+.rb{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:4px;font-size:10px;font-weight:800;}
+.rb-R{background:var(--accent);color:white;}
+.rb-A{background:var(--amber);color:white;}
+.rb-C{background:var(--blue-pale);color:var(--blue);border:1px solid var(--blue);}
+.rb-I{background:#F0F0F0;color:var(--ink-muted);}
+/* Level cards */
+.level{border:1px solid var(--rule);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;}
+.level-hdr{padding:9px 14px;font-size:11.5px;font-weight:700;}
+.level-body{padding:10px 14px;font-size:13px;color:var(--ink-soft);line-height:1.6;}
+.lv1 .level-hdr{background:var(--accent-pale);color:var(--accent);}
+.lv2 .level-hdr{background:var(--amber-pale);color:var(--amber);}
+.lv3 .level-hdr{background:var(--red-pale);color:var(--red);}
+.proc-footer{margin-top:44px;padding-top:12px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-muted);}
+.hl{background:rgba(114,212,138,.15)!important;}
+/* ORG CHART */
+.org-wrap{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);padding:28px 20px;overflow-x:auto;margin-bottom:16px;}
+
+/* ══ RESPONSIVE MÓVIL ══ */
+#hamburger{display:none;position:fixed;top:10px;left:12px;z-index:300;background:var(--sidebar-bg);border:none;border-radius:6px;padding:10px 13px;cursor:pointer;flex-direction:column;gap:5px;box-shadow:0 2px 12px rgba(0,0,0,.5);touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;}
+#hamburger span{display:block;width:22px;height:2px;background:#72D48A;border-radius:2px;transition:all .25s;}
+#hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+#hamburger.open span:nth-child(2){opacity:0;}
+#hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:90;backdrop-filter:blur(1px);}
+#overlay.visible{display:block;}
+@media(max-width:768px){
+  #hamburger{display:flex;}
+  #sidebar{transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);}
+  #sidebar.open{transform:translateX(0);z-index:300;}
+  #main{margin-left:0!important;}
+  #topbar{padding:0 14px 0 56px;}
+  #breadcrumb{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100vw - 160px);}
+  .topbar-meta{display:none;}
+  #content{padding:22px 18px 80px;}
+  .proc-title{font-size:21px;}
+  .info-grid,.info-grid-3{grid-template-columns:1fr!important;}
+  .fc-wrap{padding:10px 6px;}
+  .fc-wrap svg{max-width:100%;height:auto;}
+  .act-table{font-size:12px;}
+  .act-table thead th{font-size:8.5px;padding:7px 8px;}
+  .act-table td{padding:8px 9px;}
+  .proc-footer{flex-direction:column;gap:3px;font-size:10px;}
+}
+
+/* Cover TOC grid */
+.cover-toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;}
+.toc-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+  background:var(--white,#fff);border:1px solid var(--rule,#E8EEE9);
+  border-radius:8px;cursor:pointer;transition:all .15s;}
+.toc-item:hover{border-color:var(--green,#1F5C38);background:rgba(31,92,56,.04);}
+.toc-item-num{font-size:11px;font-weight:800;color:var(--green,#1F5C38);
+  letter-spacing:.06em;text-transform:uppercase;min-width:28px;padding-top:1px;}
+.toc-item-title{font-size:13px;font-weight:700;color:var(--text,#111816);margin-bottom:3px;}
+.toc-item-desc{font-size:11px;color:var(--text-mid,#5A6E60);line-height:1.4;}
+@media(max-width:600px){.cover-toc-grid{grid-template-columns:1fr;}}
+
+/* nav-anchor: section label in nav — same page, no navigation */
+.nav-anchor{display:block;padding:3px 16px 3px 40px;font-size:10.5px;
+  color:#3E6047;cursor:default;line-height:1.4;user-select:none;}
+.nav-anchor::before{content:'§ ';opacity:.5;}
+
+
+/* ── Sidebar nav scrollable ── */
+#sidebar{overflow-y:hidden;display:flex;flex-direction:column;}
+#sidebar nav{flex:1;overflow-y:auto;overscroll-behavior:contain;}
+#sidebar nav::-webkit-scrollbar{width:4px;}
+#sidebar nav::-webkit-scrollbar-track{background:transparent;}
+#sidebar nav::-webkit-scrollbar-thumb{background:#2A4A30;border-radius:4px;}
+#sidebar nav::-webkit-scrollbar-thumb:hover{background:#3A6040;}
+
+
+
+/* ===== Sistema editorial institucional Aldea Mayab · Libro I v13.0 ===== */
+:root{--green-950:#082f29;--green-900:#0d433a;--green-800:#15594d;--green-700:#267266;--green-100:#e8f2ef;--green-50:#f3f8f6;--gold:#c9a653;--paper:#fff;--canvas:#f4f6f5;--ink:#20302c;--muted:#687772;--line:#dce4e1;--red:#a44642;--red-100:#fbefee;--amber:#9a6922;--amber-100:#fff6df;--blue:#39738f;--blue-100:#edf6fa;--sidebar-w:300px;--radius:12px}
+body{background:var(--canvas);color:var(--ink);font-size:15px;line-height:1.62;font-weight:400}
+#sidebar{background:var(--green-950);width:var(--sidebar-w)}
+.sb-header{background:var(--green-950);padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,.12)}
+.sb-logo,.sb-book{font-weight:500;letter-spacing:.14em;color:#b6d7cd}.sb-title{font-size:14px;font-weight:500;color:#fff}
+.sb-search{background:var(--green-950);padding:10px 14px}.sb-search input{border-color:rgba(255,255,255,.18);border-radius:8px;background:rgba(255,255,255,.06);font-size:12px}
+.nav-group-label{font-weight:500;color:#c9ddd7}.nav-link,.nav-sub{font-weight:400}.nav-link.active{font-weight:500;border-left-color:var(--gold)}
+#main{margin-left:var(--sidebar-w)}#topbar{height:58px;padding:0 34px;background:#fff}.topbar-meta{align-items:center;gap:12px}.topbar-meta a,.topbar-meta button{font:inherit}
+.home-link,.print-button{border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--green-800);padding:6px 9px;text-decoration:none;cursor:pointer;font-size:11px}
+#content{max-width:1040px;padding:38px 48px 88px}.page{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:36px 40px;box-shadow:0 8px 24px rgba(15,58,49,.06)}
+.proc-eyebrow{font-weight:500;color:var(--green-700)}.proc-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;font-weight:500;letter-spacing:-.01em}.proc-subtitle{font-size:14px;color:var(--muted)}
+.info-table,.act-table,.raci-table{display:block;overflow-x:auto;border-radius:10px}.info-table tbody,.act-table tbody,.raci-table tbody{min-width:680px;display:table;width:100%}.act-table thead,.raci-table thead{min-width:680px;display:table;width:100%;table-layout:fixed}
+.it-label,.ic-label{font-weight:500}.it-value,.s-name,.ic-title{font-weight:500}.sec-title{font-weight:500}.sec-num{font-weight:500;background:var(--green-800)}
+.alert{align-items:flex-start;border-radius:10px}.alert-icon{min-width:66px;font-size:9px;font-weight:600;letter-spacing:.06em;padding-top:3px}.alert-body strong{font-weight:500}
+.resp,.badge,.rb{font-weight:500}.level-hdr{font-weight:500}.proc-footer{font-weight:400}
+.notice{margin:16px 0;padding:15px 17px;border-radius:10px;border-left:4px solid}.notice b{display:block;margin-bottom:4px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}.notice p{margin:0;font-size:13px}.notice.is-pending{background:var(--amber-100);border-color:var(--amber);color:#654817}.notice.is-reference{background:var(--blue-100);border-color:var(--blue);color:#274d61}
+.status-guide{margin:20px 0}.status-guide h2,.quick h2,.org h2,.decision-diagram h2{font-size:15px;font-weight:500;margin:0 0 12px}.status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.status-grid>div{border:1px solid var(--line);border-radius:10px;padding:13px}.status-grid b{font-size:10px;font-weight:600;letter-spacing:.06em}.status-grid p{margin:4px 0 0;font-size:12px;color:var(--muted)}
+.quick{margin:0 0 18px;border:1px solid var(--line);border-radius:12px;background:var(--green-50);padding:16px}.quick dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0}.quick dl>div{background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px;min-width:0}.quick dt{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-700)}.quick dd{margin:4px 0 0;font-size:12px;color:var(--ink);overflow-wrap:anywhere}
+.org,.decision-diagram{border:1px solid var(--line);border-radius:12px;background:#fbfdfc;padding:20px;margin:18px 0}.org-level{display:flex;justify-content:center;gap:12px}.org-level.three{display:grid;grid-template-columns:repeat(3,1fr)}.org-node{min-width:0;flex:0 1 330px;border:1px solid #b9d0c9;border-radius:10px;background:#fff;padding:13px;text-align:center}.org-node.primary{background:var(--green-950);color:#fff}.org-node.secondary{background:var(--green-800);color:#fff}.org-node b{display:block;font-size:12px;font-weight:500}.org-node span{display:block;margin-top:4px;font-size:11px;opacity:.78}.org-line{text-align:center;color:var(--gold);font-size:20px;line-height:1.3}.org-note{margin:14px 0 0;font-size:11px;color:var(--muted);text-align:center}
+.diagram-level{display:grid;gap:12px;justify-content:center}.diagram-level.columns-1{grid-template-columns:minmax(240px,480px)}.diagram-level.columns-2{grid-template-columns:repeat(2,minmax(0,1fr))}.diagram-node{border:1px solid var(--line);border-radius:10px;padding:13px;text-align:center;background:#fff;min-width:0}.diagram-node b{font-size:12px;font-weight:500}.diagram-node p{font-size:11px;color:var(--muted);margin:4px 0 0}.diagram-node.tone-start{border-color:#9fc3b8;background:var(--green-50)}.diagram-node.tone-decision{border-color:#d8b663;background:#fff9e9}.diagram-node.tone-success{border-color:#8db6a8;background:#eef8f4}.diagram-node.tone-critical{border-color:#d8aaa6;background:var(--red-100)}.diagram-node.tone-pending{border-color:#d8b663;background:var(--amber-100)}.diagram-node.tone-action{border-color:#a9c8d7;background:var(--blue-100)}.diagram-arrow{text-align:center;color:var(--gold);font-size:20px;line-height:1.3}
+.toc-item,.info-card{border-radius:10px}.toc-item-title{font-weight:500}.book-status{font-weight:500}
+@media(max-width:900px){.page{padding:28px 24px}.proc-title{font-size:32px}.status-grid{grid-template-columns:1fr}.org-level.three{grid-template-columns:1fr}.diagram-level.columns-2{grid-template-columns:1fr}}
+@media(max-width:768px){#content{padding:18px 12px 72px}.page{padding:24px 16px;border-radius:12px}.proc-title{font-size:29px}.quick dl{grid-template-columns:1fr}.home-link,.print-button{display:none}.act-table,.raci-table,.info-table{margin-inline:0}.alert{display:block}.alert-icon{display:block;margin-bottom:5px}}
+@media print{#sidebar,#hamburger,#overlay,#topbar{display:none!important}#main{margin:0!important}#content{max-width:none;padding:0}.page{display:block!important;border:0;box-shadow:none;page-break-after:always;padding:18mm}.decision-diagram,.org,.quick,.notice{break-inside:avoid}}
+</style>
+</head>
+<body>
+<button id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+<div id="overlay"></div>
+<aside id="sidebar">
+  <div class="sb-header">
+    <div class="sb-logo">Aldea Mayab · Bacalar</div>
+    <div class="sb-book">Libro I</div>
+    <div class="sb-title">Gobierno, Administración y Control Institucional</div>
+  </div>
+  <div class="sb-search"><input type="text" placeholder="Buscar sección..." oninput="searchNav(this.value)"></div>
+  <nav>
+    <!-- 1.0 -->
+    <div class="nav-group open">
+      <div class="nav-group-btn active" onclick="toggleGroup(this)">
+        <span class="nav-group-label">1.0 Marco Institucional</span>
+        <span class="nav-arrow">▶</span>
+      </div>
+      <div class="nav-items">
+        <a class="nav-link active" onclick="show('p-intro')">Portada e Introducción</a>
+        <a class="nav-link" onclick="show('p-11')">1.1 Estructura Organizacional</a>
+        <span class="nav-anchor">1.1.1 Organigrama Oficial</span>
+        <a class="nav-sub" onclick="show('p-11-puestos')">↳ 1.1.2 Descripción de Puestos</a>
+        <a class="nav-sub" onclick="show('p-11-autoridad')">↳ 1.1.3 Límites de Autoridad</a>
+        <a class="nav-sub" onclick="show('p-11-raci')">↳ 1.1.4 Matriz RACI Institucional</a>
+        <a class="nav-link" onclick="show('p-cultura')">1.5 Cultura Organizacional</a>
+        <a class="nav-link" onclick="show('p-12')">1.2 Gobierno Operativo</a>
+        <span class="nav-anchor">1.2.1 Comité Operativo</span>
+        <span class="nav-anchor">1.2.2 Comité Financiero</span>
+        <span class="nav-anchor">1.2.3 Comité de Seguridad</span>
+        <a class="nav-sub" onclick="show('p-12-dec')">↳ 1.2.4 Decisiones Extraordinarias</a>
+        <a class="nav-link" onclick="show('p-etica')">1.3 Código de Ética</a>
+        <span class="nav-anchor">1.3.1 Declaración de Conflictos</span>
+        <span class="nav-anchor">1.3.2 Política Antifraude</span>
+        <span class="nav-anchor">1.3.3 Canal de Reporte Interno</span>
+      </div>
+    </div>
+    <!-- 2.0 -->
+    <div class="nav-group">
+      <div class="nav-group-btn" onclick="toggleGroup(this)">
+        <span class="nav-group-label">2.0 Gestión Financiera</span>
+        <span class="nav-arrow">▶</span>
+      </div>
+      <div class="nav-items">
+        <a class="nav-link" onclick="show('p-21')">2.1 Planeación Presupuestal</a>
+        <span class="nav-anchor">2.1.1 Elaboración Presupuesto Anual</span>
+        <span class="nav-anchor">2.1.2 Proyección de Flujo de Efectivo</span>
+        <span class="nav-anchor">2.1.3 Aprobación Presupuestal</span>
+        <a class="nav-link" onclick="show('p-22')">2.2 Control Presupuestal</a>
+        <span class="nav-anchor">2.2.1 Seguimiento Mensual</span>
+        <span class="nav-anchor">2.2.2 Análisis de Variaciones</span>
+        <span class="nav-anchor">2.2.3 Ajustes Presupuestales</span>
+        <a class="nav-link" onclick="show('p-23')">2.3 Ingresos</a>
+        <span class="nav-anchor">2.3.1 Emisión de Estados de Cuenta</span>
+        <span class="nav-anchor">2.3.2 Cobro Ordinario HOA</span>
+        <span class="nav-anchor">2.3.3 Cobro de Servicios y Amenidades</span>
+        <span class="nav-anchor">2.3.4 Cobro de Multas</span>
+        <a class="nav-link" onclick="show('p-24')">2.4 Gestión de Morosidad</a>
+        <span class="nav-anchor">2.4.1 Sistema Escalonado</span>
+        <span class="nav-anchor">2.4.2 Restricciones Administrativas</span>
+        <span class="nav-anchor">2.4.3 Bloqueo de Registro de Huéspedes</span>
+        <span class="nav-anchor">2.4.4 Convenios de Pago</span>
+        <span class="nav-anchor">2.4.5 Turno a Gestión Jurídica</span>
+        <a class="nav-link" onclick="show('p-25')">2.5 Egresos</a>
+        <span class="nav-anchor">2.5.1 Política de Autorización de Gastos</span>
+        <span class="nav-anchor">2.5.2 Pago a Proveedores</span>
+        <span class="nav-anchor">2.5.3 Control de Caja Chica</span>
+        <span class="nav-anchor">2.5.4 Conciliaciones Bancarias</span>
+        <span class="nav-anchor">2.5.5 Archivo Digital de Facturas</span>
+      </div>
+    </div>
+    <!-- 3.0 -->
+    <div class="nav-group">
+      <div class="nav-group-btn" onclick="toggleGroup(this)">
+        <span class="nav-group-label">3.0 Riesgos y Auditoría</span>
+        <span class="nav-arrow">▶</span>
+      </div>
+      <div class="nav-items">
+        <a class="nav-link" onclick="show('p-31')">3.1 Matriz Integral de Riesgos</a>
+        <span class="nav-anchor">3.1.1 Identificación de Riesgos</span>
+        <span class="nav-anchor">3.1.2 Evaluación de Impacto</span>
+        <span class="nav-anchor">3.1.3 Planes de Mitigación</span>
+        <a class="nav-link" onclick="show('p-32')">3.2 Auditoría Interna</a>
+        <span class="nav-anchor">3.2.1 Auditoría Financiera</span>
+        <span class="nav-anchor">3.2.2 Auditoría Operativa</span>
+        <span class="nav-anchor">3.2.3 Seguimiento de Hallazgos</span>
+      </div>
+    </div>
+  </nav>
+</aside>
+<div id="main">
+  <div id="topbar">
+    <div id="breadcrumb">Libro I › <strong>Portada e Introducción</strong>
+</div>
+    <div>
+<a class="home-link" href="../index.html">Centro operativo</a><span class="meta-code">LIB-AM-01</span><span>v13.0 · 1 oct 2026</span><button class="print-button" type="button" onclick="window.print()">Imprimir</button>
+</div>
+</div>
+  <div id="content">
+
+<!-- ══ PORTADA ══ -->
+<div class="page active" id="p-intro">
+  <div class="proc-eyebrow">Aldea Mayab · Bacalar · Libro I</div>
+  <h1 class="proc-title">Gobierno, Administración y Control Institucional</h1>
+  <p class="proc-subtitle">Marco de gobernanza, gestión financiera y control de riesgos del Residencial Aldea Mayab</p>
+  <table class="info-table">
+    <tr>
+      <td>
+<span class="it-label">Código</span><span class="it-value">LIB-AM-01</span>
+</td>
+      <td>
+<span class="it-label">Versión</span><span class="it-value">13.0</span>
+</td>
+      <td>
+<span class="it-label">Fecha de emisión</span><span class="it-value">1 de octubre de 2026</span>
+</td>
+    </tr>
+    <tr>
+      <td>
+<span class="it-label">Elaboró</span><span class="it-value">Gerencia Administrativa</span>
+</td>
+      <td>
+<span class="it-label">Revisó</span><span class="it-value">Dirección General</span>
+</td>
+      <td>
+<span class="it-label">Aprobó</span><span class="it-value">PENDIENTE de evidencia formal</span>
+</td>
+    </tr>
+    <tr>
+      <td class="it-accent" colspan="3">
+<span class="it-label">Alcance</span><span class="it-value">De cumplimiento obligatorio para Dirección General, Gerencia Administrativa, Jefes de Seguridad, Mantenimiento y Limpieza, y órganos colegiados del desarrollo</span>
+</td>
+    </tr>
+  </table>
+  <aside class="notice is-pending"><b>Borrador en validación</b><p>Los montos, horarios, facultades, restricciones, frecuencias y órganos de aprobación conservados de la versión anterior son REFERENCIA hasta contrastarlos con actas, reglamento, contratos y nombramientos vigentes. Esta edición no autoriza por sí sola una decisión, gasto, sanción o restricción.</p></aside><section class="status-guide"><h2>Jerarquía de la información</h2>
+<div class="status-grid">
+<div>
+<b>AUTORIZADA</b><p>Existe aprobación y evidencia vigente.</p>
+</div>
+<div>
+<b>REFERENCIA</b><p>Orienta la operación, pero requiere contraste.</p>
+</div>
+<div>
+<b>PENDIENTE</b><p>No habilita ejecución ni decisión.</p>
+</div>
+</div></section><div class="sec-h">
+<div class="sec-num">·</div>
+<div class="sec-title">Propósito</div>
+</div>
+  <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin-bottom:14px;">Establecer formalmente la estructura de gobernanza, los niveles de autoridad, las responsabilidades institucionales y los mecanismos de control financiero y de riesgo que rigen la administración del Residencial Aldea Mayab, garantizando transparencia, trazabilidad y continuidad operativa en todas las áreas.</p>
+  <div class="info-grid">
+    <div class="info-card">
+<div class="ic-label">1.0 Marco Institucional</div>
+<div class="ic-body">Estructura organizacional, comités de gobierno, código de ética y canal de reporte interno</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">2.0 Gestión Financiera</div>
+<div class="ic-body">Planeación presupuestal, control de ingresos, gestión de morosidad y egresos</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">3.0 Riesgos y Auditoría</div>
+<div class="ic-body">Matriz integral de riesgos, auditoría financiera y operativa, seguimiento de hallazgos</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Próxima revisión</div>
+<div class="ic-body">Enero 2027 — Responsable: Gerencia Administrativa</div>
+</div>
+  </div>
+  <div class="cover-toc-grid">
+<div class="toc-item" onclick="show('p-11')">
+<div class="toc-item-num">1.0</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Marco Institucional</div>
+<div class="toc-item-desc">Estructura organizacional, gobierno operativo y código de ética</div>
+</div>
+</div>
+<div class="toc-item" onclick="show('p-cultura')">
+<div class="toc-item-num">1.5</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Cultura Organizacional</div>
+<div class="toc-item-desc">Valores, estándares de conducta y ambiente de trabajo</div>
+</div>
+</div>
+<div class="toc-item" onclick="show('p-21')">
+<div class="toc-item-num">2.0</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Finanzas y Presupuesto</div>
+<div class="toc-item-desc">Planeación presupuestal, ingresos, egresos y morosidad</div>
+</div>
+</div>
+<div class="toc-item" onclick="show('p-31')">
+<div class="toc-item-num">3.0</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Control y Auditoría</div>
+<div class="toc-item-desc">Matriz de riesgos, auditoría interna y seguimiento</div>
+</div>
+</div>
+</div>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · Portada</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.1 ORGANIGRAMA ══ -->
+<div class="page" id="p-11">
+  <div class="proc-eyebrow">1.0 Marco Institucional · 1.1</div>
+  <h1 class="proc-title">1.1 Estructura Organizacional</h1>
+  <p class="proc-subtitle">Organigrama oficial con jerarquía de autoridad — Asamblea → Dirección → Gerencia → Jefaturas</p>
+
+  <section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Definir quién gobierna y quién ejecuta.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Asamblea / Dirección / Gerencia.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Conflicto de autoridad o suplencia no definida.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Organigrama y nombramientos vigentes.</dd>
+</div>
+</dl></section><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">1.1.1 Organigrama Oficial</div>
+</div>
+  <section class="org" aria-label="Organigrama funcional">
+  <h2>Organigrama funcional</h2>
+  <div class="org-level"><div class="org-node primary">
+<b>Asamblea de Condóminos</b><span>Máxima autoridad conforme al régimen y sus actas.</span>
+</div></div>
+  <div class="org-line">↓</div>
+  <div class="org-level"><div class="org-node secondary">
+<b>Dirección General</b><span>Dirección estratégica y supervisión.</span>
+</div></div>
+  <div class="org-line">↓</div>
+  <div class="org-level"><div class="org-node secondary">
+<b>Gerencia Administrativa</b><span>Finanzas, administración y coordinación operativa.</span>
+</div></div>
+  <div class="org-line">↓</div>
+  <div class="org-level three">
+<div class="org-node">
+<b>Seguridad</b><span>Accesos, incidentes y continuidad.</span>
+</div>
+<div class="org-node">
+<b>Mantenimiento</b><span>Infraestructura y servicios críticos.</span>
+</div>
+<div class="org-node">
+<b>Coordinación operativa</b><span>Recepción, limpieza y amenidades.</span>
+</div>
+</div>
+  <p class="org-note">Los nombres, horarios, suplencias y facultades requieren nombramiento o autorización vigente.</p>
+</section><div class="alert a-blue">
+    <div class="alert-icon">CONTROL</div>
+    <div class="alert-body">
+<strong>Principio de jerarquía</strong>La Gerencia Administrativa ocupa el Nivel 2 y supervisa las tres jefaturas operativas. Los Jefes de Seguridad, Mantenimiento y Coordinación Operativa reportan directamente a la Gerencia Administrativa, no a la Dirección General, salvo en ausencia de la Gerencia o situaciones de emergencia que así lo requieran.</div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Niveles Jerárquicos</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:60px">Nivel</th>
+<th style="width:220px">Cargo</th>
+<th>Funciones principales</th>
+<th style="width:150px">Horario</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>N0</strong></td>
+<td><strong>Asamblea de Condóminos</strong></td>
+<td>Máxima autoridad. Aprueba presupuesto anual, reglamento interno y decisiones extraordinarias</td>
+<td>Sesiones convocadas</td>
+</tr>
+      <tr>
+<td><strong>N1</strong></td>
+<td><strong>Dirección General</strong></td>
+<td>Representación legal, estrategia y supervisión general de todas las áreas</td>
+<td>Lun–Vie</td>
+</tr>
+      <tr>
+<td><strong>N2</strong></td>
+<td><strong>Gerencia Administrativa</strong></td>
+<td>Administración financiera, coordinación operativa, gestión de proveedores, Master Control</td>
+<td>Lun–Vie 10:00–18:00</td>
+</tr>
+      <tr>
+<td><strong>N3-A</strong></td>
+<td><strong>Jefe de Seguridad</strong></td>
+<td>Control de accesos, gestión de incidentes, coordinador PIPC, auditoría de registros</td>
+<td>24/7 on-call</td>
+</tr>
+      <tr>
+<td><strong>N3-B</strong></td>
+<td><strong>Jefe de Mantenimiento</strong></td>
+<td>PTAR, albercas, firepit, equipos de emergencia, verificación mensual de botiquines</td>
+<td>Lun–Vie 06:00–14:00</td>
+</tr>
+      <tr>
+<td><strong>N3-C</strong></td>
+<td><strong>Coordinación Operativa</strong></td>
+<td>Recepción de huéspedes, limpieza de áreas comunes, gestión de amenidades</td>
+<td>Lun–Dom 07:00–21:00</td>
+</tr>
+      <tr>
+<td><strong>N4</strong></td>
+<td><strong>Personal operativo</strong></td>
+<td>Guardias, recepcionistas, personal de limpieza y Casa Club</td>
+<td>Por turno</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 1.1 Estructura Organizacional</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.1.2 PUESTOS ══ -->
+<div class="page" id="p-11-puestos">
+  <div class="proc-eyebrow">1.0 Marco Institucional · 1.1.2</div>
+  <h1 class="proc-title">1.1.2 Descripción de Puestos</h1>
+  <p class="proc-subtitle">Responsabilidades, autoridad, restricciones absolutas y perfil requerido por rol</p>
+
+  <section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Consultar funciones y entregables por puesto.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Titular y superior inmediato.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Actividad fuera de competencia o puesto vacante.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Descripción firmada y evaluación.</dd>
+</div>
+</dl></section><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Gerencia Administrativa — N2</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:200px">Dimensión</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Responsabilidades clave</strong></td>
+<td>Actualización diaria del Master Control (08:00 AM) · Gestión de cobranza y morosidad · Autorización de gastos hasta $50,000 MXN · Pago a proveedores · Conciliaciones bancarias · Archivo digital de facturas · Reporte financiero mensual a Dirección</td>
+</tr>
+      <tr>
+<td><strong>Autoridad</strong></td>
+<td>Supervisa directamente a Jefes de Seguridad, Mantenimiento y Coordinación Operativa · Puede autorizar erogaciones N2 sin consultar Dirección General</td>
+</tr>
+      <tr>
+<td><strong>Restricciones absolutas</strong></td>
+<td>No puede aprobar gastos que excedan $50,000 MXN sin autorización de Dirección General · No puede modificar el padrón de propietarios en Vivook sin respaldo documental</td>
+</tr>
+      <tr>
+<td><strong>Horario</strong></td>
+<td>Lunes a Viernes · 10:00–18:00 hrs · On-call para emergencias financieras</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Jefe de Seguridad — N3-A</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:200px">Dimensión</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Responsabilidades clave</strong></td>
+<td>Coordinación de turnos de guardias · Auditoría diaria de registros de AppSheet · Activación de protocolos de emergencia · Coordinador de Brigadas PIPC · Enlace con autoridades de Protección Civil Bacalar</td>
+</tr>
+      <tr>
+<td><strong>Autoridad</strong></td>
+<td>Puede activar medidas de seguridad elevadas sin aprobación previa en emergencias · Autoriza el acceso extraordinario fuera del sistema cuando los sistemas fallan</td>
+</tr>
+      <tr>
+<td><strong>Restricciones absolutas</strong></td>
+<td>No puede cambiar cerraduras de unidades habitacionales · No puede retener pertenencias de residentes · No puede negar acceso a la unidad del propietario</td>
+</tr>
+      <tr>
+<td><strong>Horario</strong></td>
+<td>Disponibilidad 24/7 — on-call permanente · Presencia física mínima Lun–Vie</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">Jefe de Mantenimiento — N3-B</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:200px">Dimensión</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Responsabilidades clave</strong></td>
+<td>Inspección diaria PTAR (08:00 AM) · Mantenimiento de albercas (06:00–09:00 AM) · Inventario y reabastecimiento de bioetanol · Verificación mensual de botiquines y extintores · Órdenes de trabajo</td>
+</tr>
+      <tr>
+<td><strong>Autoridad</strong></td>
+<td>Puede detener operación de amenidades por mantenimiento sin consultar · Genera órdenes de compra de hasta $20,000 MXN con autorización de Gerencia</td>
+</tr>
+      <tr>
+<td><strong>Horario</strong></td>
+<td>Lunes a Viernes · 06:00–14:00 hrs</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">4</div>
+<div class="sec-title">Recepcionista Diurno — N4</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:200px">Dimensión</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Responsabilidades clave</strong></td>
+<td>Check-in digital en AppSheet · Captura de IDs y firma de reglamento · Digitalización matutina de registros nocturnos antes de 10:00 AM · Validación de QRs en Vivook · Gestión de paquetería</td>
+</tr>
+      <tr>
+<td><strong>Restricciones absolutas</strong></td>
+<td>No puede autorizar acceso sin registro en sistema · No puede compartir fotos de IDs fuera del grupo operativo · No puede aceptar reservas de amenidades por teléfono o WhatsApp</td>
+</tr>
+      <tr>
+<td><strong>Horario</strong></td>
+<td>07:00–21:00 hrs</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">5</div>
+<div class="sec-title">Guardia Nocturno — N4</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:200px">Dimensión</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Responsabilidades clave</strong></td>
+<td>Registro físico nocturno en bitácora · Fotografía de ID y placas vehiculares · Subida de registros a carpeta OFFLINE en Google Drive · Control de barrera vehicular · Rondines perimetrales</td>
+</tr>
+      <tr>
+<td><strong>Restricciones absolutas</strong></td>
+<td>No puede autorizar ingreso sin fotografía de identificación · No puede abandonar caseta sin relevo confirmado</td>
+</tr>
+      <tr>
+<td><strong>Horario</strong></td>
+<td>21:00–07:00 hrs</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 1.1.2 Descripción de Puestos</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.1.3 AUTORIDAD ══ -->
+<div class="page" id="p-11-autoridad">
+  <div class="proc-eyebrow">1.0 Marco Institucional · 1.1.3</div>
+  <h1 class="proc-title">1.1.3 Límites de Autoridad y Facultades</h1>
+  <p class="proc-subtitle">Niveles de autorización para decisiones operativas, financieras y de emergencia</p>
+
+  <section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Validar si una persona puede decidir o autorizar.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Responsable con facultad escrita.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Monto, riesgo o asunto fuera del límite.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Autorización y soporte de la decisión.</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los montos, plazos, facultades o restricciones de esta sección permanecen como REFERENCIA hasta vincularlos con el acta, presupuesto, reglamento o autorización vigente.</p></aside><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Autorización de Gastos</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:70px">Nivel</th>
+<th style="width:200px">Cargo</th>
+<th>Monto máximo por operación</th>
+<th style="width:160px">Tope mensual acumulado</th>
+<th style="width:180px">Requiere aprobación de</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>N0</strong></td>
+<td>Asamblea de Condóminos</td>
+<td>Sin límite — presupuesto extraordinario y modificaciones al reglamento</td>
+<td>—</td>
+<td>Quórum mínimo 51%</td>
+</tr>
+      <tr>
+<td><strong>N1</strong></td>
+<td>Dirección General</td>
+<td>Sin límite dentro del presupuesto aprobado por Asamblea</td>
+<td>—</td>
+<td>Comité Financiero para gastos no presupuestados</td>
+</tr>
+      <tr>
+<td><strong>N2</strong></td>
+<td>Gerencia Administrativa</td>
+<td>Hasta $50,000 MXN por erogación</td>
+<td>$100,000 MXN / mes</td>
+<td>Dirección General</td>
+</tr>
+      <tr>
+<td><strong>N3</strong></td>
+<td>Jefes de área</td>
+<td>Hasta $20,000 MXN con orden de trabajo</td>
+<td>$40,000 MXN / mes</td>
+<td>Gerencia Administrativa</td>
+</tr>
+      <tr>
+<td><strong>N4</strong></td>
+<td>Personal operativo</td>
+<td>Caja chica según política — máx. $2,000 MXN</td>
+<td>Jefe de área directo</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Autorización de Decisiones Operativas</div>
+</div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ic-label">Decisiones que requieren N1 (Dirección)</div>
+      <div class="ic-body" style="margin-top:6px;">Contratación o rescisión de proveedores estratégicos · Modificación de tarifas HOA · Activación de protocolo legal por morosidad · Cambios al reglamento interno</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label">Decisiones que requieren N2 (Gerencia)</div>
+      <div class="ic-body" style="margin-top:6px;">Convenios de pago con propietarios morosos · Suspensión temporal de amenidades por adeudo · Generación de órdenes de compra N3 · Apertura de expediente de incidente formal</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label">Decisiones autónomas N3 (Jefaturas)</div>
+      <div class="ic-body" style="margin-top:6px;">Activación de protocolos de emergencia inmediata · Detención de amenidades por mantenimiento urgente · Denegación de acceso sin QR válido · Notificación a PC Municipal en emergencias</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label">Restricciones absolutas — todos los niveles</div>
+      <div class="ic-body" style="margin-top:6px;">Nadie puede cambiar cerraduras de unidades habitacionales · Nadie puede retener pertenencias de residentes · Nadie puede negar acceso a la unidad del propietario</div>
+    </div>
+  </div>
+  <div class="alert a-amber">
+<div class="alert-icon">ATENCIÓN</div>
+<div class="alert-body">
+<strong>Topes mensuales acumulados</strong>El límite por operación y el tope mensual aplican simultáneamente — ambos deben respetarse. El tope mensual se reinicia el primer día hábil de cada mes. Si un nivel alcanza su tope antes de fin de mes, cualquier gasto adicional escala automáticamente al nivel superior sin importar el monto individual. Cuando Gerencia Administrativa alcanza su tope mensual, Dirección General aprueba cada caso de forma puntual. <strong>Queda prohibido fragmentar una misma compra o contratación en operaciones menores para eludir los niveles de autorización.</strong>
+</div>
+</div>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 1.1.3 Límites de Autoridad y Facultades</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.1.4 RACI ══ -->
+<div class="page" id="p-11-raci">
+  <div class="proc-eyebrow">1.0 Marco Institucional · 1.1.4</div>
+  <h1 class="proc-title">1.1.4 Matriz RACI Institucional</h1>
+  <p class="proc-subtitle">R = Responsable de ejecutar · A = Aprobador (Accountable) · C = Consultado · I = Informado</p>
+
+  <section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Identificar quién ejecuta, aprueba, consulta e informa.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Propietario del proceso.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Dos aprobadores o ninguna persona responsable.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>RACI validada y evidencia del proceso.</dd>
+</div>
+</dl></section><table class="raci-table">
+    <thead>
+      <tr>
+        <th style="width:220px;text-align:left">Proceso / Decisión</th>
+        <th>Asamblea</th>
+        <th>Dirección</th>
+        <th>Gerencia Adm.</th>
+        <th>Jefe Seg.</th>
+        <th>Jefe Mant.</th>
+        <th>Coord. Op.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+<td>Aprobación presupuesto anual</td>
+<td><span class="rb rb-A">A</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+</tr>
+      <tr>
+<td>Autorización de gastos N2</td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-A">A</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-C">C</span></td>
+<td><span class="rb rb-I">I</span></td>
+</tr>
+      <tr>
+<td>Gestión de morosidad ordinaria</td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+</tr>
+      <tr>
+<td>Turno a gestión jurídica</td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-A">A</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+</tr>
+      <tr>
+<td>Activación protocolo de emergencia</td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-A">A</span></td>
+<td><span class="rb rb-C">C</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-C">C</span></td>
+<td><span class="rb rb-C">C</span></td>
+</tr>
+      <tr>
+<td>Emisión de estados de cuenta HOA</td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+</tr>
+      <tr>
+<td>Programa de mantenimiento preventivo</td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-A">A</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-I">I</span></td>
+</tr>
+      <tr>
+<td>Control de accesos y registro</td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-A">A</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-C">C</span></td>
+</tr>
+      <tr>
+<td>Convocatoria a Asamblea</td>
+<td><span class="rb rb-A">A</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+</tr>
+      <tr>
+<td>Contratación de proveedores</td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-A">A</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-C">C</span></td>
+<td><span class="rb rb-C">C</span></td>
+<td><span class="rb rb-I">I</span></td>
+</tr>
+      <tr>
+<td>Reporte a Protección Civil</td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-A">A</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-C">C</span></td>
+<td><span class="rb rb-I">I</span></td>
+</tr>
+      <tr>
+<td>Auditoría financiera interna</td>
+<td><span class="rb rb-A">A</span></td>
+<td><span class="rb rb-C">C</span></td>
+<td><span class="rb rb-R">R</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+<td><span class="rb rb-I">I</span></td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 1.1.4 Matriz RACI Institucional</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.2 COMITÉS ══ -->
+
+<!-- ══ CULTURA ORGANIZACIONAL ══ -->
+<div class="page" id="p-cultura">
+  <div class="proc-eyebrow">1.0 Marco Institucional · 1.5</div>
+  <h1 class="proc-title">1.5 Cultura Organizacional</h1>
+  <p class="proc-subtitle">Valores, estándares de conducta y ambiente de trabajo en Aldea Mayab</p>
+
+  <section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Orientar conducta y ambiente de trabajo.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Toda persona vinculada a la operación.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Acoso, represalia, fraude o riesgo a personas.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Reporte y seguimiento confidencial.</dd>
+</div>
+</dl></section><div class="sec-h">
+<div class="sec-num sec-num-g">1</div>
+<div class="sec-title">Valores Institucionales</div>
+</div>
+  <div class="info-grid" style="grid-template-columns:1fr 1fr 1fr;gap:10px;display:grid;margin-bottom:16px;">
+    <div class="info-card">
+<div class="ic-label">Servicio</div>
+<div class="ic-title">Anticipamos, no reaccionamos</div>
+<div class="ic-body">El estándar no es resolver lo que se pide — es anticipar lo que se necesita. Cada interacción con un residente es una oportunidad de demostrar excelencia.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Integridad</div>
+<div class="ic-title">Sin excepciones ni atajos</div>
+<div class="ic-body">Los procedimientos existen porque protegen a todos. Saltarse un paso por comodidad o conveniencia no es eficiencia — es un riesgo que cargamos juntos.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Comunidad</div>
+<div class="ic-title">El residencial es de todos</div>
+<div class="ic-body">Cuidamos las áreas comunes, el entorno natural y la convivencia como si fueran propios. El lago, la selva y los espacios compartidos son patrimonio colectivo.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Discreción</div>
+<div class="ic-title">Lo que pasa aquí, queda aquí</div>
+<div class="ic-body">La información de residentes, sus rutinas, conflictos o finanzas es estrictamente confidencial. Compartir información interna es causal de rescisión inmediata.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Responsabilidad</div>
+<div class="ic-title">Dueños del resultado</div>
+<div class="ic-body">No se transfieren problemas sin intentar resolverlos primero. Si algo está mal y lo veo, es mi responsabilidad actuar o escalar — no esperar a que alguien más lo note.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Respeto</div>
+<div class="ic-title">Trato digno en todo momento</div>
+<div class="ic-body">Con residentes, visitantes, proveedores y compañeros. El rango no justifica el maltrato. La firmeza no requiere descortesía.</div>
+</div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num sec-num-g">2</div>
+<div class="sec-title">Estándares de Conducta</div>
+</div>
+  <div class="info-grid" style="grid-template-columns:1fr 1fr;gap:10px;display:grid;margin-bottom:16px;">
+    <div class="info-card">
+      <div class="ic-label">Presentación personal</div>
+      <div class="ic-body">Uniforme completo y limpio en turno. Gafete visible en todo momento. Cabello recogido para personal de mantenimiento y seguridad. Teléfono personal en silencio o vibración durante el turno — el uso personal se limita a los descansos designados.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label">Comunicación con residentes</div>
+      <div class="ic-body">Saludo proactivo, tono calmado, escucha activa antes de responder. Nunca discutir, nunca justificarse defensivamente. Si no se puede resolver en el momento: "Lo atiendo en X minutos" con seguimiento real. Jamás prometer lo que no está autorizado.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label">Uso de instalaciones</div>
+      <div class="ic-body">El personal no usa albercas, asadores, firepit ni instalaciones para residentes fuera de sus funciones de servicio. Las áreas de descanso del personal son las designadas. El consumo de alimentos no se realiza en áreas visibles para residentes.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label">Redes sociales e imagen</div>
+      <div class="ic-body">Prohibido publicar fotos, videos o información del residencial, residentes o instalaciones en redes sociales personales sin autorización escrita de Dirección General. Las imágenes de CCTV son confidenciales y no pueden compartirse bajo ningún motivo.</div>
+    </div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num sec-num-g">3</div>
+<div class="sec-title">Ambiente de Trabajo</div>
+</div>
+  <ol class="step-list">
+    <li>
+<span class="step-n">1</span><div>
+<strong>Política de puertas abiertas</strong> — Cualquier miembro del equipo puede hablar directamente con Gerencia Administrativa sobre situaciones que afecten su desempeño, bienestar o integridad. No se requiere pasar por el jefe inmediato para reportar conductas irregulares.</div>
+</li>
+    <li>
+<span class="step-n">2</span><div>
+<strong>Cero tolerancia a hostigamiento</strong> — El acoso laboral, sexual o discriminación por cualquier causa es motivo de rescisión inmediata, independientemente del rango o antigüedad. Las denuncias se tratan con confidencialidad absoluta.</div>
+</li>
+    <li>
+<span class="step-n">3</span><div>
+<strong>Retroalimentación continua</strong> — Las evaluaciones de desempeño son bimestrales y bidireccionales: el supervisor evalúa al colaborador y el colaborador evalúa condiciones de trabajo. El objetivo es mejorar, no documentar para despedir.</div>
+</li>
+    <li>
+<span class="step-n">4</span><div>
+<strong>Reconocimiento</strong> — El desempeño excepcional se reconoce públicamente en las reuniones de equipo mensuales y puede traducirse en bonos por desempeño, conforme a la política vigente de compensación variable.</div>
+</li>
+  </ol>
+
+  <div class="sec-h">
+<div class="sec-num sec-num-g">4</div>
+<div class="sec-title">Compromisos Mutuos</div>
+</div>
+  <table class="act-table green">
+    <thead><tr>
+<th>La organización se compromete a</th>
+<th>El colaborador se compromete a</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td>Proporcionar herramientas, equipos y uniformes adecuados para el trabajo</td>
+<td>Cuidar y mantener en buen estado los recursos asignados</td>
+</tr>
+      <tr>
+<td>Pagar puntualmente conforme a lo acordado y comunicar cambios con anticipación</td>
+<td>Cumplir su horario, avisar ausencias con al menos 4 horas de anticipación</td>
+</tr>
+      <tr>
+<td>Capacitar al personal en los procedimientos de este manual y actualizarlo cuando cambien</td>
+<td>Conocer y aplicar los procedimientos de su área — la ignorancia no es excusa</td>
+</tr>
+      <tr>
+<td>Crear condiciones de trabajo seguras y respetuosas</td>
+<td>Reportar condiciones inseguras o conductas inapropiadas de inmediato</td>
+</tr>
+      <tr>
+<td>Escuchar sugerencias y dar retroalimentación constructiva y oportuna</td>
+<td>Participar activamente en evaluaciones y proponer mejoras al proceso</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="proc-footer">
+<span>PR-AM-GOB-001 · Libro I · 1.5 Cultura Organizacional</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<div class="page" id="p-12">
+  <div class="proc-eyebrow">1.0 Marco Institucional · 1.2</div>
+  <h1 class="proc-title">1.2 Gobierno Operativo</h1>
+  <p class="proc-subtitle">Tres comités institucionales con funciones, quórum, periodicidad y facultades definidas</p>
+
+  <section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Convocar y documentar órganos operativos.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Presidencia o secretaría del comité.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Falta quórum, evidencia o conflicto de interés.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Convocatoria, minuta y acuerdos.</dd>
+</div>
+</dl></section><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">1.2.1 Comité Operativo</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:160px">Atributo</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Periodicidad</strong></td>
+<td>Semanal — día y hora fijos definidos por Dirección General</td>
+</tr>
+      <tr>
+<td><strong>Quórum mínimo</strong></td>
+<td>3 de 5 integrantes para sesión válida</td>
+</tr>
+      <tr>
+<td><strong>Integrantes</strong></td>
+<td>Dirección General (Presidente) · Gerencia Administrativa (Secretario) · Jefe de Seguridad · Jefe de Mantenimiento · Coordinación Operativa</td>
+</tr>
+      <tr>
+<td><strong>Facultades</strong></td>
+<td>Supervisión continua de indicadores operativos · Aprobación de medidas correctivas inmediatas · Seguimiento de acuerdos de sesiones anteriores · Emisión de acuerdos vinculantes para las coordinaciones</td>
+</tr>
+      <tr>
+<td><strong>Registro</strong></td>
+<td>Minuta en AppSheet con número de folio, acuerdos, responsables y fechas compromisos — entregada en máx. 24h tras la sesión</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">1.2.2 Comité Financiero</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:160px">Atributo</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Periodicidad</strong></td>
+<td>Mensual — último viernes hábil de cada mes · Extraordinaria cuando la urgencia lo requiera</td>
+</tr>
+      <tr>
+<td><strong>Quórum mínimo</strong></td>
+<td>Dirección General + Gerencia Administrativa (quórum básico suficiente para sesión ordinaria)</td>
+</tr>
+      <tr>
+<td><strong>Integrantes</strong></td>
+<td>Dirección General (Presidente) · Gerencia Administrativa (Secretario) · Representante de Asamblea (si aplica)</td>
+</tr>
+      <tr>
+<td><strong>Facultades</strong></td>
+<td>Revisión de estado financiero mensual · Aprobación de gastos no presupuestados · Aprobación de convenios de pago con morosos · Autorización del turno a gestión jurídica · Supervisión de conciliaciones bancarias</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">1.2.3 Comité de Seguridad</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:160px">Atributo</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Periodicidad</strong></td>
+<td>Según incidentes — convocatoria inmediata ante eventos de seguridad relevantes</td>
+</tr>
+      <tr>
+<td><strong>Integrantes</strong></td>
+<td>Jefe de Seguridad (Coordinador) · Dirección General · Gerencia Administrativa</td>
+</tr>
+      <tr>
+<td><strong>Facultades especiales</strong></td>
+<td>Puede activar medidas de seguridad elevadas (nivel naranja o rojo) sin aprobación previa del Comité Operativo · Tiene autoridad para restringir acceso a amenidades en emergencias activas · Puede coordinar directamente con autoridades municipales</td>
+</tr>
+      <tr>
+<td><strong>Registro</strong></td>
+<td>Acta de incidente con clasificación por nivel, acciones tomadas y seguimiento — en máx. 4h tras el evento</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 1.2 Gobierno Operativo</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.2.4 DECISIONES ══ -->
+<div class="page" id="p-12-dec">
+  <div class="proc-eyebrow">1.0 Marco Institucional · 1.2.4</div>
+  <h1 class="proc-title">1.2.4 Protocolo de Toma de Decisiones Extraordinarias</h1>
+  <p class="proc-subtitle">Procedimiento para decisiones urgentes que no pueden esperar al ciclo ordinario de comités</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Resolver una situación fuera de la rutina.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Nivel de autoridad competente.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Impacto alto, monto excedido o facultad dudosa.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Resolución, fundamento y responsables.</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los montos, plazos, facultades o restricciones de esta sección permanecen como REFERENCIA hasta vincularlos con el acta, presupuesto, reglamento o autorización vigente.</p></aside><figure class="decision-diagram" aria-label="Decisiones extraordinarias"><h2>Decisiones extraordinarias</h2>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Identificar la decisión</b><p>Registrar asunto, urgencia, impacto, monto y evidencia disponible.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-decision">
+<b>¿Está dentro de la autoridad escrita?</b><p>Contrastar con presupuesto, facultad vigente y conflicto de interés.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-2">
+<div class="diagram-node tone-success">
+<b>Sí · Resolver y registrar</b><p>La persona autorizada decide, comunica y conserva evidencia.</p>
+</div>
+<div class="diagram-node tone-critical">
+<b>No · Escalar</b><p>Dirección o Asamblea resuelve según el alcance validado.</p>
+</div>
+</div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Cerrar con resolución</b><p>Registrar decisión, fundamento, responsables, plazo y comunicación.</p>
+</div></div></figure><table class="info-table">
+    <tr>
+      <td>
+<span class="it-label">Activa cuando</span><span class="it-value">Situación que requiere decisión inmediata fuera del ciclo ordinario</span>
+</td>
+      <td>
+<span class="it-label">Quórum mínimo</span><span class="it-value">3 integrantes del comité correspondiente</span>
+</td>
+    </tr>
+    <tr>
+      <td class="it-accent" colspan="2">
+<span class="it-label">Aplica para</span><span class="it-value">Erogaciones urgentes no presupuestadas · Decisiones de seguridad que no admiten demora · Eventos de fuerza mayor · Cualquier situación donde esperar al próximo comité ordinario genere daño mayor</span>
+</td>
+    </tr>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Flujo del Protocolo</div>
+</div>
+  <ol class="step-list">
+    <li>
+<span class="step-n">1</span><div>
+<strong>Documentación inicial</strong> — El área que detecta la situación genera registro formal: descripción del evento, impacto estimado, opciones disponibles y tiempo límite de decisión</div>
+</li>
+    <li>
+<span class="step-n">2</span><div>
+<strong>Notificación a Gerencia Administrativa</strong> — Primer contacto para evaluar si la decisión es de nivel N2 o requiere escalar a Dirección General</div>
+</li>
+    <li>
+<span class="step-n">3</span><div>
+<strong>Notificación a Dirección General</strong> — Si aplica. Preferentemente por canal escrito oficial. Si no está disponible, actúa la Gerencia Administrativa con poderes delegados en emergencia</div>
+</li>
+    <li>
+<span class="step-n">4</span><div>
+<strong>Consulta rápida al comité</strong> — Por videoconferencia o mensaje simultáneo. Quórum mínimo de 3 integrantes para validar la decisión</div>
+</li>
+    <li>
+<span class="step-n">5</span><div>
+<strong>Emisión y registro del acuerdo</strong> — Número de folio, fundamento, decisión y votación. Registro en bitácora de acuerdos dentro de 24h</div>
+</li>
+    <li>
+<span class="step-n">6</span><div>
+<strong>Ratificación en sesión ordinaria</strong> — El acuerdo extraordinario se presenta para ratificación formal en la siguiente sesión ordinaria del comité correspondiente</div>
+</li>
+  </ol>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 1.2.4 Decisiones Extraordinarias</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.3 ÉTICA ══ -->
+<div class="page" id="p-etica">
+  <div class="proc-eyebrow">1.0 Marco Institucional · 1.3</div>
+  <h1 class="proc-title">1.3 Código de Ética y Conflictos de Interés</h1>
+  <p class="proc-subtitle">Declaración de conflictos, política antifraude y canal de reporte interno</p>
+
+  <section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Prevenir y tratar conflictos de interés.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Toda persona; Gerencia administra el canal.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Fraude, represalia o participación de quien investiga.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Declaración, investigación y resolución.</dd>
+</div>
+</dl></section><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">1.3.1 Declaración de Conflictos de Interés</div>
+</div>
+  <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin-bottom:12px;">Todo miembro del personal y órganos de gobierno está obligado a declarar formalmente cualquier situación que pudiera constituir un conflicto de interés. La declaración se realiza al inicio de cada ejercicio anual y de manera inmediata cuando surja una situación sobrevenida.</p>
+  <div class="alert a-red">
+<div class="alert-icon">CRÍTICO</div>
+<div class="alert-body">
+<strong>Obligación de declaración</strong>Quien no declare un conflicto de interés conocido estará sujeto a las sanciones de la Política Antifraude y el Reglamento Interno, independientemente de si el conflicto generó daño o no.</div>
+</div>
+  <table class="act-table" style="margin-top:10px;">
+    <thead><tr>
+<th>Situación que genera conflicto de interés</th>
+<th style="width:200px">Acción requerida</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td>Relación familiar con proveedor del residencial</td>
+<td>Declarar y abstenerse de participar en la licitación o aprobación</td>
+</tr>
+      <tr>
+<td>Interés económico directo o indirecto en decisión del comité</td>
+<td>Declarar antes del inicio de la sesión y no votar</td>
+</tr>
+      <tr>
+<td>Relación personal que comprometa objetividad en auditoría</td>
+<td>Solicitar sustitución del auditor o declarar para registro</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">1.3.2 Política Antifraude</div>
+</div>
+  <div class="alert a-red">
+<div class="alert-icon">CRÍTICO</div>
+<div class="alert-body">
+<strong>Tolerancia cero</strong>Aldea Mayab tiene tolerancia cero ante actos de corrupción, fraude, malversación o cualquier conducta que afecte la integridad de los recursos comunes. La Política Antifraude aplica en todos los niveles de la organización sin excepción.</div>
+</div>
+  <table class="act-table" style="margin-top:8px;">
+    <thead><tr>
+<th>Conducta prohibida</th>
+<th style="width:260px">Consecuencia</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td>Desvío de fondos del residencial</td>
+<td>Rescisión inmediata + denuncia ante autoridades</td>
+</tr>
+      <tr>
+<td>Falsificación de documentos o registros</td>
+<td>Rescisión inmediata + denuncia ante autoridades</td>
+</tr>
+      <tr>
+<td>Aceptación de dádivas o comisiones de proveedores</td>
+<td>Sanción administrativa y rescisión según gravedad</td>
+</tr>
+      <tr>
+<td>Conflicto de interés no declarado</td>
+<td>Sanción administrativa graduada según impacto</td>
+</tr>
+      <tr>
+<td>Manipulación de registros en Vivook o AppSheet</td>
+<td>Rescisión + responsabilidad civil potencial</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">1.3.3 Canal de Reporte Interno</div>
+</div>
+  <ol class="step-list">
+    <li>
+<span class="step-n">1</span><div>
+<strong>Recepción del reporte</strong> — Por correo oficial, plataforma digital o formato físico. Se asigna número de folio y se acusa recibo en máx. 24h. El canal garantiza confidencialidad al denunciante de buena fe.</div>
+</li>
+    <li>
+<span class="step-n">2</span><div>
+<strong>Análisis de procedencia</strong> — Dirección General o comité designado realiza análisis en máx. 5 días hábiles para determinar si el reporte amerita investigación formal.</div>
+</li>
+    <li>
+<span class="step-n">3</span><div>
+<strong>Investigación formal</strong> — Si procede, se inicia investigación documentada con acceso limitado solo a los involucrados en el proceso. El denunciante está protegido de represalias.</div>
+</li>
+    <li>
+<span class="step-n">4</span><div>
+<strong>Resolución e informe</strong> — Se informa al denunciante el resultado en máx. 30 días hábiles. Si hay sanciones, se documentan en expediente del personal involucrado.</div>
+</li>
+  </ol>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 1.3 Código de Ética y Conflictos de Interés</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 2.1 PRESUPUESTO ══ -->
+<div class="page" id="p-21">
+  <div class="proc-eyebrow">2.0 Gestión Financiera · 2.1</div>
+  <h1 class="proc-title">2.1 Planeación Presupuestal</h1>
+  <p class="proc-subtitle">Elaboración del presupuesto anual, proyección de flujo de efectivo y ciclo de aprobación</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Preparar, aprobar y controlar el presupuesto.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Gerencia prepara; órgano competente aprueba.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Supuesto no comprobado o gasto sin respaldo.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Presupuesto aprobado y control mensual.</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los montos, plazos, facultades o restricciones de esta sección permanecen como REFERENCIA hasta vincularlos con el acta, presupuesto, reglamento o autorización vigente.</p></aside><figure class="decision-diagram" aria-label="Ciclo de planeación presupuestal"><h2>Ciclo de planeación presupuestal</h2>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Preparar anteproyecto</b><p>Gerencia consolida necesidades, históricos, riesgos y supuestos.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-action">
+<b>Revisión de Dirección</b><p>Verificar viabilidad, prioridades, reservas y justificación.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-decision">
+<b>¿Está listo para aprobación?</b><p>Si requiere cambios, devolver con observaciones documentadas.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-success">
+<b>Presentar al órgano competente</b><p>Aprobar mediante evidencia formal y controlar la versión vigente.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Ejecutar y vigilar</b><p>Comparar mensualmente presupuesto, real, variación y acciones.</p>
+</div></div></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">2.1.1 Elaboración del Presupuesto Anual</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Actividad</th>
+<th>Detalle</th>
+<th style="width:130px">Responsable</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Levantamiento de necesidades</div></td>
+<td>Octubre — cada jefatura presenta sus necesidades presupuestales para el siguiente año: mantenimiento preventivo, equipos, personal, servicios</td>
+<td><span class="resp resp-g">Cada jefatura</span></td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Consolidación y análisis</div></td>
+<td>Gerencia Administrativa consolida todas las solicitudes, revisa el histórico del año anterior y proyecta variaciones de costos</td>
+<td><span class="resp resp-g">Gerencia Adm.</span></td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Elaboración del draft</div></td>
+<td>Noviembre — se elabora el presupuesto draft con ingresos proyectados (cuotas HOA, servicios, multas) y egresos por categoría</td>
+<td><span class="resp resp-g">Gerencia Adm.</span></td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td><div class="s-name">Revisión por Dirección</div></td>
+<td>Dirección General revisa y ajusta el draft. Identifica partidas no presupuestadas y propone reserva de contingencia (mínimo 10%)</td>
+<td><span class="resp resp-b">Dirección Gral.</span></td>
+</tr>
+      <tr>
+<td class="sn">5</td>
+<td><div class="s-name">Presentación a Asamblea</div></td>
+<td>Diciembre — presentación formal en Asamblea de Condóminos para aprobación. El presupuesto es válido solo con aprobación de quórum mínimo</td>
+<td><span class="resp resp-b">Dirección Gral.</span></td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">2.1.2 Proyección de Flujo de Efectivo</div>
+</div>
+  <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">La Gerencia Administrativa mantiene una proyección mensual actualizada del flujo de efectivo que permite anticipar necesidades de liquidez y tomar decisiones oportunas.</p>
+  <table class="act-table">
+    <thead><tr>
+<th>Componente</th>
+<th>Fuente de datos</th>
+<th style="width:130px">Frecuencia</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Ingresos esperados</strong></td>
+<td>Padrón de propietarios en Vivook · Historial de pagos · Reservas confirmadas de amenidades</td>
+<td>Mensual</td>
+</tr>
+      <tr>
+<td><strong>Egresos comprometidos</strong></td>
+<td>Contratos de proveedores · Nómina · Órdenes de trabajo abiertas en Mantenimiento</td>
+<td>Mensual</td>
+</tr>
+      <tr>
+<td><strong>Saldo proyectado</strong></td>
+<td>Master Control (Google Sheets) · Conciliación bancaria del mes anterior</td>
+<td>Mensual</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">2.1.3 Aprobación Presupuestal</div>
+</div>
+  <div class="info-grid">
+    <div class="info-card">
+<div class="ic-label">Presupuesto ordinario</div>
+<div class="ic-body">Aprobado una vez al año por Asamblea de Condóminos en sesión de diciembre. Vigente del 1 de enero al 31 de diciembre del año siguiente.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Presupuesto extraordinario</div>
+<div class="ic-body">Cuando surge una necesidad no contemplada que supera el 10% del presupuesto aprobado, se convoca Asamblea Extraordinaria para aprobación específica.</div>
+</div>
+  </div>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 2.1 Planeación Presupuestal</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 2.2 CONTROL ══ -->
+<div class="page" id="p-22">
+  <div class="proc-eyebrow">2.0 Gestión Financiera · 2.2</div>
+  <h1 class="proc-title">2.2 Control Presupuestal</h1>
+  <p class="proc-subtitle">Seguimiento mensual, análisis de variaciones y ajustes presupuestales</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Controlar solicitudes y variaciones presupuestales.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Gerencia y nivel autorizador aplicable.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Sin partida, saldo, cotización o facultad.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Solicitud, aprobación, factura y conciliación.</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los montos, plazos, facultades o restricciones de esta sección permanecen como REFERENCIA hasta vincularlos con el acta, presupuesto, reglamento o autorización vigente.</p></aside><figure class="decision-diagram" aria-label="Control presupuestal y solicitud de gasto"><h2>Control presupuestal y solicitud de gasto</h2>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Recibir solicitud</b><p>Identificar necesidad, partida, monto, proveedor y soporte.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-decision">
+<b>¿Existe presupuesto y autoridad?</b><p>Comprobar saldo, nivel aprobado y cotizaciones aplicables.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-2">
+<div class="diagram-node tone-success">
+<b>Sí · Autorizar según facultad</b><p>Documentar aprobador, condiciones y fecha.</p>
+</div>
+<div class="diagram-node tone-pending">
+<b>No · No ejecutar</b><p>Gestionar ajuste o escalar al órgano competente.</p>
+</div>
+</div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-action">
+<b>Registrar y comprobar</b><p>Vincular orden, factura, recepción, pago y conciliación.</p>
+</div></div></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">2.2.1 Seguimiento Mensual</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Actividad</th>
+<th>Detalle</th>
+<th style="width:120px">Plazo</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Cierre de mes</div></td>
+<td>Gerencia Administrativa cierra los registros del mes: ingresos cobrados, egresos pagados, pendientes</td>
+<td>Día 3 del mes siguiente</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Actualización Master Control</div></td>
+<td>Actualizar la hoja de control financiero con los datos reales del mes cerrado</td>
+<td>Día 5</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Reporte a Dirección</div></td>
+<td>Reporte ejecutivo: real vs. presupuestado por categoría, variaciones significativas, alerta de desviaciones mayores al 10%</td>
+<td>Día 7</td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td><div class="s-name">Presentación en Comité Financiero</div></td>
+<td>El estado financiero mensual se presenta en la sesión del último viernes del mes para revisión y aprobación</td>
+<td>Último viernes</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">2.2.2 Análisis de Variaciones</div>
+</div>
+  <div class="level lv1">
+<div class="level-hdr">Variación menor — hasta 5%</div>
+<div class="level-body">Se registra en el reporte mensual como nota informativa. No requiere acción inmediata. Se monitorea en el siguiente mes.</div>
+</div>
+  <div class="level lv2">
+<div class="level-hdr">Variación moderada — 5% a 10%</div>
+<div class="level-body">Requiere análisis de causa en el reporte mensual y propuesta de medida correctiva para aprobación de Comité Financiero.</div>
+</div>
+  <div class="level lv3">
+<div class="level-hdr">Variación crítica — más de 10%</div>
+<div class="level-body">Requiere sesión extraordinaria del Comité Financiero, análisis detallado de causa-efecto, propuesta de ajuste presupuestal y, si aplica, convocatoria a Asamblea Extraordinaria.</div>
+</div>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">2.2.3 Ajustes Presupuestales</div>
+</div>
+  <p style="font-size:13px;color:var(--ink-soft);margin-bottom:8px;">Los ajustes al presupuesto aprobado siguen el mismo nivel de autorización que su monto original:</p>
+  <table class="act-table">
+    <thead><tr>
+<th>Tipo de ajuste</th>
+<th>Autorización requerida</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td>Reasignación entre partidas del mismo nivel (sin cambio en total)</td>
+<td>Gerencia Administrativa</td>
+</tr>
+      <tr>
+<td>Incremento de partida dentro del presupuesto total aprobado</td>
+<td>Comité Financiero</td>
+</tr>
+      <tr>
+<td>Incremento que supere el presupuesto total aprobado</td>
+<td>Asamblea Extraordinaria</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 2.2 Control Presupuestal</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 2.3 INGRESOS ══ -->
+<div class="page" id="p-23">
+  <div class="proc-eyebrow">2.0 Gestión Financiera · 2.3</div>
+  <h1 class="proc-title">2.3 Ingresos</h1>
+  <p class="proc-subtitle">Estados de cuenta, cobro de cuotas HOA, servicios, amenidades y multas</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Emitir, identificar y conciliar ingresos.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Administración / contabilidad.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Pago no identificado o diferencia de importe.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Estado, comprobante y conciliación.</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los montos, plazos, facultades o restricciones de esta sección permanecen como REFERENCIA hasta vincularlos con el acta, presupuesto, reglamento o autorización vigente.</p></aside><figure class="decision-diagram" aria-label="Ciclo de ingresos"><h2>Ciclo de ingresos</h2>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Emitir cargo o estado</b><p>Usar padrón, concepto, periodo y tarifa vigentes.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-decision">
+<b>¿Pago identificado?</b><p>Conciliar referencia, unidad, importe, fecha y cuenta.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-2">
+<div class="diagram-node tone-success">
+<b>Sí · Aplicar y confirmar</b><p>Registrar pago y conservar evidencia.</p>
+</div>
+<div class="diagram-node tone-pending">
+<b>No · Aclarar o notificar</b><p>No aplicar a una unidad sin evidencia suficiente.</p>
+</div>
+</div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Cerrar periodo</b><p>Conciliar cartera, depósitos, diferencias y pendientes.</p>
+</div></div></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">2.3.1 Emisión de Estados de Cuenta</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th>Actividad</th>
+<th style="width:130px">Responsable</th>
+<th style="width:110px">Plazo</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td>Generar reporte "Saldos por Unidad" en Vivook al cierre de cada mes</td>
+<td><span class="resp resp-g">Gerencia Adm.</span></td>
+<td>Día 1 del mes</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td>Enviar estado de cuenta individual a cada propietario/PM por correo oficial</td>
+<td><span class="resp resp-g">Gerencia Adm.</span></td>
+<td>Días 1–3</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td>Actualizar Master Control con estatus de pagos recibidos</td>
+<td><span class="resp resp-g">Gerencia Adm.</span></td>
+<td>Diario 08:00 AM</td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td>Verificar que alertas de moroso aparezcan correctamente en AppSheet</td>
+<td><span class="resp resp-g">Gerencia Adm.</span></td>
+<td>Diario 08:30 AM</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">2.3.2 Cobro Ordinario de Cuotas HOA</div>
+</div>
+  <div class="info-grid">
+    <div class="info-card">
+<div class="ic-label">Fecha de vencimiento</div>
+<div class="ic-body">Definida en Reglamento Interno aprobado por Asamblea — generalmente del 1 al 10 de cada mes</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Medios de pago aceptados</div>
+<div class="ic-body">Transferencia bancaria · Depósito · Pago en línea vía Vivook (si habilitado)</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Recargo por mora</div>
+<div class="ic-body">Según política aprobada por Asamblea — se aplica automáticamente a partir del día 11</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Comprobante de pago</div>
+<div class="ic-body">Obligatorio enviarlo por el canal oficial al realizar el pago. Se procesa y refleja en Vivook en máx. 24h hábiles</div>
+</div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">2.3.3 Cobro de Servicios y Amenidades</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th>Servicio / Amenidad</th>
+<th>Tarifa</th>
+<th style="width:180px">Forma de cobro</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td>Renta de Firepit (Fogata Ecológica)</td>
+<td>$1,500 MXN por sesión — no reembolsable*</td>
+<td>Anticipado vía Vivook</td>
+</tr>
+      <tr>
+<td>Asador (Grill) — depósito en garantía</td>
+<td>Monto según política vigente</td>
+<td>Efectivo o voucher en recepción</td>
+</tr>
+      <tr>
+<td>Token de iluminación canchas pádel (nocturno)</td>
+<td>Según tarifa aprobada</td>
+<td>Pago en recepción antes del uso</td>
+</tr>
+      <tr>
+<td>Otros servicios adicionales</td>
+<td>Según tabulador aprobado por Asamblea</td>
+<td>Vivook o recepción</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">4</div>
+<div class="sec-title">2.3.4 Cobro de Multas</div>
+</div>
+  <div class="alert a-amber">
+<div class="alert-icon">ATENCIÓN</div>
+<div class="alert-body">
+<strong>Principio de autorización</strong>Las multas solo pueden emitirse por conductas expresamente tipificadas en el Reglamento Interno aprobado por Asamblea. El personal operativo no puede imponer multas directamente — debe notificar a Gerencia Administrativa para emisión formal.</div>
+</div>
+  <table class="act-table" style="margin-top:8px;">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th>Paso</th>
+<th style="width:130px">Responsable</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td>Documentar infracción con evidencia fotográfica o registro en AppSheet</td>
+<td><span class="resp resp-g">Personal operativo</span></td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td>Notificar a Gerencia Administrativa con evidencia</td>
+<td><span class="resp resp-g">Personal operativo</span></td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td>Gerencia emite notificación formal al propietario/PM con fundamento reglamentario y monto</td>
+<td><span class="resp resp-g">Gerencia Adm.</span></td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td>Registrar multa en Vivook como cargo a la unidad</td>
+<td><span class="resp resp-g">Gerencia Adm.</span></td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 2.3 Ingresos</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 2.4 MOROSIDAD ══ -->
+<div class="page" id="p-24">
+  <div class="proc-eyebrow">2.0 Gestión Financiera · 2.4</div>
+  <h1 class="proc-title">2.4 Gestión de Morosidad</h1>
+  <p class="proc-subtitle">Sistema escalonado de 5 niveles — desde recordatorio hasta gestión jurídica</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Gestionar saldos vencidos sin discrecionalidad.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Gerencia y asesoría autorizada.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Restricción o acción no respaldada por reglamento.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Notificación, convenio, pago o escalamiento.</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los montos, plazos, facultades o restricciones de esta sección permanecen como REFERENCIA hasta vincularlos con el acta, presupuesto, reglamento o autorización vigente.</p></aside><figure class="decision-diagram" aria-label="Gestión de morosidad"><h2>Gestión de morosidad</h2>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Detectar saldo vencido</b><p>Validar cargo, pago, fecha y datos del propietario.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-action">
+<b>Notificar formalmente</b><p>Usar canal y plazo autorizados; conservar acuse.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-decision">
+<b>¿Existe pago o convenio vigente?</b><p>Confirmar evidencia y cumplimiento de condiciones.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-2">
+<div class="diagram-node tone-success">
+<b>Sí · Actualizar cartera</b><p>Registrar acuerdo, pago y seguimiento.</p>
+</div>
+<div class="diagram-node tone-critical">
+<b>No · Escalar</b><p>Aplicar únicamente el nivel autorizado por reglamento y órgano competente.</p>
+</div>
+</div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Cerrar o mantener seguimiento</b><p>Documentar resultado, responsable y próxima acción.</p>
+</div></div></figure><table class="info-table">
+    <tr>
+      <td class="it-red" colspan="3">
+<span class="it-label">Principio rector</span><span class="it-value">El sistema de cobranza es silencioso y escalonado. El objetivo es recuperar la cartera con el mínimo impacto en la relación con el propietario. La gestión jurídica es el último recurso, no el primero.</span>
+</td>
+    </tr>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">2.4.1 Sistema Escalonado de Gestión de Morosidad</div>
+</div>
+  <div class="level lv1">
+<div class="level-hdr">Nivel 1 — Recordatorio automático (días 1–15 de atraso)</div>
+<div class="level-body">Vivook envía alerta automática al propietario/PM. Master Control marca la unidad como "Moroso" en AppSheet. Sin restricciones aún — acciones informativas.</div>
+</div>
+  <div class="level lv1">
+<div class="level-hdr">Nivel 2 — Notificación formal por correo (días 16–30)</div>
+<div class="level-body">Gerencia envía correo formal con plantilla estándar indicando monto adeudado y fecha límite. Texto: "Estimado Propietario, registramos adeudo de [Monto]. Le invitamos a regularizarse para evitar restricciones en amenidades."</div>
+</div>
+  <div class="level lv2">
+<div class="level-hdr">Nivel 3 — Restricción de amenidades (días 31–45)</div>
+<div class="level-body">Vivook bloquea automáticamente reservas de amenidades. El propietario/PM recibe notificación del bloqueo. El acceso a la unidad habitacional NO se restringe en ningún caso.</div>
+</div>
+  <div class="level lv2">
+<div class="level-hdr">Nivel 4 — Bloqueo de registro de huéspedes (días 46–60)</div>
+<div class="level-body">Se bloquea la generación de nuevos QRs de acceso para huéspedes. Los huéspedes con QR activo al momento del bloqueo mantienen acceso hasta fin de su estancia registrada.</div>
+</div>
+  <div class="level lv3">
+<div class="level-hdr">Nivel 5 — Turno a gestión jurídica (a partir del día 61)</div>
+<div class="level-body">Solo después de 60 días de adeudo sin respuesta. Notificación formal por correo certificado. Derivación a asesoría jurídica externa autorizada por Asamblea. Se mantienen todas las restricciones previas.</div>
+</div>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">2.4.2 Restricciones Administrativas por Adeudo</div>
+</div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ic-label" style="color:var(--accent);">✓ SÍ se puede restringir</div>
+      <div class="ic-body" style="margin-top:6px;">Reserva y uso de amenidades (pádel, firepit, asadores, alberca) · Generación de nuevos QRs de acceso para huéspedes · Bloqueo automático en Vivook</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label" style="color:var(--red);">✗ NUNCA se puede restringir</div>
+      <div class="ic-body" style="margin-top:6px;">Acceso a la unidad habitacional del propietario · Servicios básicos del residencial · Derechos de voto en Asamblea</div>
+    </div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">2.4.4 Convenios de Pago</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:160px">Parámetro</th>
+<th>Condición</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Enganche mínimo</strong></td>
+<td>30% del adeudo total al momento de firmar el convenio. No se acepta convenio sin enganche pagado en el mismo acto de firma.</td>
+</tr>
+      <tr>
+<td><strong>Plazo máximo</strong></td>
+<td>Hasta 6 mensualidades para liquidar el saldo restante. El monto mensual no puede ser inferior a una cuota HOA vigente.</td>
+</tr>
+      <tr>
+<td><strong>Desbloqueos</strong></td>
+<td>Al firmar y pagar el enganche: se levanta el bloqueo de huéspedes Airbnb. Las amenidades se desbloquean al cubrir el 60% del adeudo total.</td>
+</tr>
+      <tr>
+<td><strong>Incumplimiento</strong></td>
+<td>Un solo pago vencido reactiva todas las restricciones y escala directamente al Nivel 5 (gestión jurídica), sin nuevo plazo de gracia.</td>
+</tr>
+      <tr>
+<td><strong>Reincidencia en convenio</strong></td>
+<td>El propietario que incumple un convenio y solicita uno nuevo debe cubrir el 50% del adeudo como enganche (en lugar del 30%). Un segundo incumplimiento cierra la posibilidad de nuevos convenios: el caso pasa directamente a gestión jurídica.</td>
+</tr>
+      <tr>
+<td><strong>Quién aprueba</strong></td>
+<td>Gerencia Administrativa para adeudos hasta 3 mensualidades. Comité Financiero para adeudos mayores. En todos los casos se formaliza por escrito con firma de ambas partes.</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 2.4 Gestión de Morosidad</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 2.5 EGRESOS ══ -->
+<div class="page" id="p-25">
+  <div class="proc-eyebrow">2.0 Gestión Financiera · 2.5</div>
+  <h1 class="proc-title">2.5 Egresos</h1>
+  <p class="proc-subtitle">Autorización de gastos, pago a proveedores, caja chica, conciliaciones y archivo digital</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Autorizar, comprobar y conciliar egresos.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Solicitante, aprobador y administración.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Compra fragmentada, conflicto o soporte incompleto.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Orden, factura, recepción y pago.</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los montos, plazos, facultades o restricciones de esta sección permanecen como REFERENCIA hasta vincularlos con el acta, presupuesto, reglamento o autorización vigente.</p></aside><figure class="decision-diagram" aria-label="Autorización y pago de egresos"><h2>Autorización y pago de egresos</h2>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Solicitar egreso</b><p>Definir concepto, monto, partida, proveedor y necesidad.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-decision">
+<b>¿Cumple presupuesto y facultad?</b><p>Validar cotizaciones, conflicto de interés y autorizaciones.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-2">
+<div class="diagram-node tone-success">
+<b>Sí · Contratar o pagar</b><p>Confirmar recepción conforme y soporte fiscal.</p>
+</div>
+<div class="diagram-node tone-pending">
+<b>No · Detener</b><p>Solicitar ajuste o aprobación superior antes de comprometer recursos.</p>
+</div>
+</div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-action">
+<b>Conciliar y archivar</b><p>Vincular autorización, factura, pago, entrega y registro contable.</p>
+</div></div></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">2.5.1 Política de Autorización de Gastos</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:70px">Nivel</th>
+<th style="width:180px">Cargo autorizador</th>
+<th>Monto</th>
+<th style="width:180px">Documentación requerida</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>N1</strong></td>
+<td>Dirección General</td>
+<td>Cualquier monto dentro del presupuesto aprobado</td>
+<td>Orden de compra + factura</td>
+</tr>
+      <tr>
+<td><strong>N2</strong></td>
+<td>Gerencia Administrativa</td>
+<td>Hasta $50,000 MXN por erogación</td>
+<td>Orden de compra + cotización + factura</td>
+</tr>
+      <tr>
+<td><strong>N3</strong></td>
+<td>Jefes de área</td>
+<td>Hasta $20,000 MXN con orden de trabajo</td>
+<td>Orden de trabajo + factura o recibo</td>
+</tr>
+      <tr>
+<td><strong>N4</strong></td>
+<td>Personal operativo</td>
+<td>Caja chica máx. $2,000 MXN</td>
+<td>Recibo o ticket + descripción del gasto</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="alert a-red">
+<div class="alert-icon">CRÍTICO</div>
+<div class="alert-body">
+<strong>Principio de control</strong>Todo gasto debe tener factura o comprobante fiscal vigente. Gastos sin comprobante son responsabilidad personal de quien los autorizó. Prohibido fraccionar gastos para evadir niveles de autorización.</div>
+</div>
+  <div class="alert a-blue">
+<div class="alert-icon">CONTROL</div>
+<div class="alert-body">
+<strong>Política de cotizaciones — mantenimiento e infraestructura</strong>Para gastos de mantenimiento, reparación e infraestructura, aplica adicionalmente la política de cotizaciones definida en <strong>Libro IV § 1.2</strong>: hasta $5,000 MXN sin cotización formal · $5,001–$20,000 MXN mínimo 1 cotización · $20,001–$50,000 MXN mínimo 3 cotizaciones · más de $50,000 MXN mínimo 3 cotizaciones con aprobación de Dirección General. Las excepciones por emergencia deben justificarse en AppSheet en el mismo acto. Está prohibido fragmentar una compra entre varios gastos menores para eludir el requisito de cotizaciones.</div>
+</div>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">2.5.2 Pago a Proveedores</div>
+</div>
+  <ol class="step-list">
+    <li>
+<span class="step-n">1</span><div>Proveedor entrega factura electrónica al correo oficial de administración + orden de servicio firmada</div>
+</li>
+    <li>
+<span class="step-n">2</span><div>Gerencia valida que el servicio fue entregado conforme (firma de recepción del jefe de área responsable)</div>
+</li>
+    <li>
+<span class="step-n">3</span><div>Gerencia registra la factura en el archivo digital y programa el pago según ciclo: nóminas los 15 y último de mes; proveedores los últimos 5 días del mes</div>
+</li>
+    <li>
+<span class="step-n">4</span><div>Se realiza la transferencia bancaria con referencia al número de factura · Se archiva comprobante de pago en Google Drive</div>
+</li>
+  </ol>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">2.5.3 Control de Caja Chica</div>
+</div>
+  <div class="info-grid">
+    <div class="info-card">
+<div class="ic-label">Fondo asignado</div>
+<div class="ic-body">Máximo $5,000 MXN por área. Gastos individuales máx. $2,000 MXN.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Reposición</div>
+<div class="ic-body">Cuando el fondo llegue al 30% del monto asignado, el jefe de área solicita reposición presentando todos los comprobantes del período.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Auditoría</div>
+<div class="ic-body">Gerencia realiza cuadre de caja chica mensualmente. Diferencias mayores a $50 MXN requieren explicación escrita.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Gastos NO autorizables</div>
+<div class="ic-body">Artículos personales · Alimentos que no sean insumos operativos · Pagos a personas sin comprobante</div>
+</div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num">4</div>
+<div class="sec-title">2.5.4 Conciliaciones Bancarias</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th>Actividad</th>
+<th style="width:130px">Plazo</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td>Descargar estado de cuenta bancario del mes cerrado</td>
+<td>Día 3 del mes</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td>Comparar movimientos bancarios contra registros en Master Control y Vivook</td>
+<td>Día 5</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td>Identificar y documentar partidas en conciliación (depósitos no aplicados, cargos no identificados)</td>
+<td>Día 7</td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td>Presentar conciliación al Comité Financiero con resumen de diferencias</td>
+<td>Último viernes</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">5</div>
+<div class="sec-title">2.5.5 Archivo Digital de Facturas</div>
+</div>
+  <p style="font-size:13px;color:var(--ink-soft);margin-bottom:10px;">Toda factura debe archivarse en Google Drive bajo la siguiente nomenclatura estándar:</p>
+  <div class="alert a-green">
+<div class="alert-icon">REGISTRO</div>
+<div class="alert-body">
+<strong>Nomenclatura obligatoria</strong>AAAA-MM-DD_[NombreProveedor]_[Concepto]_[Monto].pdf · Ejemplo: 2026-01-15_Vactor_ServiciosPTAR_8500.pdf · Las facturas sin nomenclatura correcta no serán procesadas para pago.</div>
+</div>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 2.5 Egresos</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 3.1 RIESGOS ══ -->
+<div class="page" id="p-31">
+  <div class="proc-eyebrow">3.0 Gestión de Riesgos y Auditoría · 3.1</div>
+  <h1 class="proc-title">3.1 Matriz Integral de Riesgos</h1>
+  <p class="proc-subtitle">Identificación, evaluación de impacto y planes de mitigación por área</p>
+
+  <section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Identificar y controlar riesgos institucionales.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Propietario de cada riesgo.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Riesgo crítico sin control o responsable.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Matriz, acción, plazo y riesgo residual.</dd>
+</div>
+</dl></section><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">3.1.1 Identificación de Riesgos · 3.1.2 Evaluación de Impacto · 3.1.3 Planes de Mitigación</div>
+</div>
+  <table class="act-table">
+    <thead>
+      <tr>
+        <th style="width:180px">Riesgo</th>
+        <th style="width:80px">Área</th>
+        <th style="width:70px">Probabilidad</th>
+        <th style="width:70px">Impacto</th>
+        <th>Plan de mitigación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Morosidad superior al 20% del padrón</strong></td>
+        <td><span class="badge b-a">Financiero</span></td>
+        <td><span class="badge b-a">Media</span></td>
+        <td><span class="badge" style="background:var(--red-pale);color:var(--red);">Alto</span></td>
+        <td>Sistema escalonado ADM-02 · Activación de restricciones en Vivook · Comité Financiero en sesión extraordinaria</td>
+      </tr>
+      <tr>
+        <td><strong>Fallo del sistema Vivook o AppSheet</strong></td>
+        <td><span class="badge b-g">Tecnológico</span></td>
+        <td><span class="badge b-a">Media</span></td>
+        <td><span class="badge b-a">Medio</span></td>
+        <td>Protocolo Híbrido (bitácora física + fotos en celular) · Digitalización al recuperar conexión en &lt;2h · Contacto con soporte técnico</td>
+      </tr>
+      <tr>
+        <td><strong>Falla en PTAR con riesgo de derrame</strong></td>
+        <td><span class="badge" style="background:var(--red-pale);color:var(--red);">Ambiental</span></td>
+        <td><span class="badge b-g">Baja</span></td>
+        <td><span class="badge" style="background:var(--red-pale);color:var(--red);">Crítico</span></td>
+        <td>Inspección diaria MI-01 · Servicio de vactor urgente · Activación PE-06 si hay contacto con laguna · Notificación a CONANP</td>
+      </tr>
+      <tr>
+        <td><strong>Incidente de seguridad con huésped</strong></td>
+        <td><span class="badge" style="background:var(--red-pale);color:var(--red);">Seguridad</span></td>
+        <td><span class="badge b-a">Media</span></td>
+        <td><span class="badge b-a">Medio</span></td>
+        <td>Protocolo 9.9 de incidentes · Personal capacitado en desescalamiento · Documentación inmediata en AppSheet</td>
+      </tr>
+      <tr>
+        <td><strong>Huracán o fenómeno meteorológico</strong></td>
+        <td><span class="badge" style="background:var(--red-pale);color:var(--red);">Natural</span></td>
+        <td><span class="badge b-g">Baja</span></td>
+        <td><span class="badge" style="background:var(--red-pale);color:var(--red);">Alto</span></td>
+        <td>PIPC activo · Monitoreo PC Quintana Roo · Kit de emergencia preparado · Protocolo PE-04</td>
+      </tr>
+      <tr>
+        <td><strong>Pérdida o filtración de datos de huéspedes</strong></td>
+        <td><span class="badge b-g">Tecnológico</span></td>
+        <td><span class="badge b-g">Baja</span></td>
+        <td><span class="badge" style="background:var(--red-pale);color:var(--red);">Alto</span></td>
+        <td>Carpetas cifradas en Google Drive · Eliminación de IDs en 72h post-checkout · Política de privacidad de datos</td>
+      </tr>
+      <tr>
+        <td><strong>Proveedor de seguridad incumple servicio</strong></td>
+        <td><span class="badge b-a">Operativo</span></td>
+        <td><span class="badge b-a">Media</span></td>
+        <td><span class="badge b-a">Medio</span></td>
+        <td>Evaluación periódica de empresa externa · Cláusula de penalización en contrato · Plan de contingencia con guardias internos</td>
+      </tr>
+      <tr>
+        <td><strong>Avistamiento recurrente de fauna de alto riesgo</strong></td>
+        <td><span class="badge" style="background:var(--red-pale);color:var(--red);">Ambiental</span></td>
+        <td><span class="badge b-a">Media</span></td>
+        <td><span class="badge" style="background:var(--red-pale);color:var(--red);">Alto</span></td>
+        <td>Capacitación anual en fauna local · Protocolo PE-03 · Reporte a PC Municipal si &gt;3 en 30 días</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 3.1 Matriz Integral de Riesgos</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 3.2 AUDITORÍA ══ -->
+<div class="page" id="p-32">
+  <div class="proc-eyebrow">3.0 Gestión de Riesgos y Auditoría · 3.2</div>
+  <h1 class="proc-title">3.2 Auditoría Interna</h1>
+  <p class="proc-subtitle">Auditoría financiera, operativa y seguimiento de hallazgos</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Para qué sirve</dt>
+<dd>Evaluar cumplimiento y eficacia del sistema.</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Auditor independiente del proceso revisado.</dd>
+</div>
+<div>
+<dt>Escalar si</dt>
+<dd>Hallazgo crítico o acción ineficaz.</dd>
+</div>
+<div>
+<dt>Evidencia mínima</dt>
+<dd>Plan, evidencia, informe y cierre.</dd>
+</div>
+</dl></section><figure class="decision-diagram" aria-label="Ciclo de auditoría interna"><h2>Ciclo de auditoría interna</h2>
+<div class="diagram-level columns-1"><div class="diagram-node tone-start">
+<b>Planear auditoría</b><p>Definir alcance, criterio, muestra, independencia y calendario.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-action">
+<b>Obtener evidencia</b><p>Revisar registros, entrevistas, observación y trazabilidad.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-decision">
+<b>¿Existe hallazgo?</b><p>Clasificar con requisito, evidencia, riesgo y alcance.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-2">
+<div class="diagram-node tone-success">
+<b>No · Emitir informe</b><p>Documentar conclusión y conservar expediente.</p>
+</div>
+<div class="diagram-node tone-pending">
+<b>Sí · Corregir</b><p>Asignar contención, causa, acción, responsable y plazo.</p>
+</div>
+</div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-1"><div class="diagram-node tone-decision">
+<b>¿La acción fue eficaz?</b><p>Verificar evidencia y ausencia de recurrencia.</p>
+</div></div>
+<div class="diagram-arrow" aria-hidden="true">↓</div>
+<div class="diagram-level columns-2">
+<div class="diagram-node tone-success">
+<b>Sí · Cerrar</b><p>Aprobar cierre y actualizar riesgos.</p>
+</div>
+<div class="diagram-node tone-critical">
+<b>No · Reabrir y escalar</b><p>Mantener el hallazgo abierto hasta demostrar eficacia.</p>
+</div>
+</div></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">3.2.1 Auditoría Financiera</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:160px">Atributo</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Frecuencia</strong></td>
+<td>Semestral (junio y diciembre) · Extraordinaria si el Comité Financiero lo determina</td>
+</tr>
+      <tr>
+<td><strong>Responsable</strong></td>
+<td>Comité Financiero + auditor externo designado por Asamblea cuando aplique</td>
+</tr>
+      <tr>
+<td><strong>Alcance</strong></td>
+<td>Conciliaciones bancarias de los últimos 6 meses · Facturas y comprobantes de egresos · Estado de cartera de morosidad · Caja chica de todas las áreas · Contratos vigentes con proveedores</td>
+</tr>
+      <tr>
+<td><strong>Entregable</strong></td>
+<td>Informe de auditoría financiera con hallazgos, calificación por área y plan de acción correctivo — presentado en Asamblea</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">3.2.2 Auditoría Operativa</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:160px">Atributo</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Frecuencia</strong></td>
+<td>Trimestral · El Jefe de Seguridad realiza auditoría mensual de registros de AppSheet</td>
+</tr>
+      <tr>
+<td><strong>Responsable</strong></td>
+<td>Gerencia Administrativa · Jefe de Seguridad (registros de acceso)</td>
+</tr>
+      <tr>
+<td><strong>Alcance</strong></td>
+<td>Cumplimiento de procedimientos de control de accesos · Registros de mantenimiento preventivo · Bitácoras de incidentes · Inventario de equipos de emergencia · Simulacros realizados vs. programados</td>
+</tr>
+      <tr>
+<td><strong>Entregable</strong></td>
+<td>Reporte de cumplimiento operativo con semáforo (verde/ámbar/rojo) por procedimiento — presentado al Comité Operativo</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">3.2.3 Seguimiento de Hallazgos</div>
+</div>
+  <ol class="step-list">
+    <li>
+<span class="step-n">1</span><div>
+<strong>Registro de hallazgo</strong> — Todo hallazgo de auditoría se registra en el sistema con número de folio, descripción, área responsable y clasificación (crítico / moderado / menor)</div>
+</li>
+    <li>
+<span class="step-n">2</span><div>
+<strong>Plan de acción</strong> — El área responsable presenta plan de acción correctiva con fechas compromiso en máx. 5 días hábiles tras recibir el informe</div>
+</li>
+    <li>
+<span class="step-n">3</span><div>
+<strong>Verificación</strong> — Gerencia verifica el cierre de hallazgos en la fecha comprometida. Si no se cierra, escala al Comité correspondiente</div>
+</li>
+    <li>
+<span class="step-n">4</span><div>
+<strong>Cierre formal</strong> — El hallazgo se marca como cerrado solo cuando la evidencia de corrección es verificada y aprobada por quien realizó la auditoría</div>
+</li>
+    <li>
+<span class="step-n">5</span><div>
+<strong>Reincidencia</strong> — Si un hallazgo reaparece en la siguiente auditoría, automáticamente escala a "crítico" y requiere presentación ante Comité Financiero o Asamblea</div>
+</li>
+  </ol>
+  <div class="proc-footer">
+<span>LIB-AM-01 · v13.0 · Libro I · 3.2 Auditoría Interna</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+  </div>
+<!-- /content -->
+</div>
+<!-- /main -->
+
+<script>
+
+const PAGES = {
+  'p-intro':       '1.0 Marco Institucional · Portada e Introducción',
+  'p-11':          '1.0 Marco Institucional · 1.1 Estructura Organizacional',
+  'p-11-puestos':  '1.0 Marco Institucional · 1.1.2 Descripción de Puestos',
+  'p-11-autoridad':'1.0 Marco Institucional · 1.1.3 Límites de Autoridad',
+  'p-11-raci':     '1.0 Marco Institucional · 1.1.4 Matriz RACI',
+  'p-12':          '1.0 Marco Institucional · 1.2 Gobierno Operativo',
+  'p-12-dec':      '1.0 Marco Institucional · 1.2.4 Decisiones Extraordinarias',
+  'p-etica':       '1.0 Marco Institucional · 1.3 Código de Ética',
+  'p-21':          '2.0 Gestión Financiera · 2.1 Planeación Presupuestal',
+  'p-22':          '2.0 Gestión Financiera · 2.2 Control Presupuestal',
+  'p-23':          '2.0 Gestión Financiera · 2.3 Ingresos',
+  'p-24':          '2.0 Gestión Financiera · 2.4 Gestión de Morosidad',
+  'p-25':          '2.0 Gestión Financiera · 2.5 Egresos',
+  'p-31':          '3.0 Riesgos y Auditoría · 3.1 Matriz Integral de Riesgos',
+  'p-32':          '3.0 Riesgos y Auditoría · 3.2 Auditoría Interna',
+};
+function show(id,updateHash=true){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link,.nav-sub').forEach(n=>n.classList.remove('active'));
+  const page=document.getElementById(id);
+  if(page)page.classList.add('active');
+  const label=PAGES[id]||'';
+  const parts=label.split(' · ');
+  const bc=document.getElementById('breadcrumb');
+  if(parts.length>1){bc.innerHTML='Libro I &rsaquo; '+parts.slice(0,-1).join(' &rsaquo; ')+' &rsaquo; <strong>'+parts[parts.length-1]+'</strong>';}
+  else{bc.innerHTML='Libro I &rsaquo; <strong>'+label+'</strong>';}
+  document.querySelectorAll('.nav-link,.nav-sub').forEach(el=>{
+    if((el.getAttribute('onclick')||'').includes("'"+id+"'"))el.classList.add('active');
+  });
+  if(updateHash&&location.hash!=='#'+id)history.pushState(null,'','#'+id);
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(window.innerWidth<=768&&window.closeSidebar)window.closeSidebar();
+}
+function toggleGroup(btn){
+  const grp=btn.closest('.nav-group');
+  const wasOpen=grp.classList.contains('open');
+  document.querySelectorAll('.nav-group').forEach(g=>g.classList.remove('open'));
+  document.querySelectorAll('.nav-group-btn').forEach(b=>b.classList.remove('active'));
+  if(!wasOpen){grp.classList.add('open');btn.classList.add('active');}
+}
+function searchNav(val){
+  const v=val.toLowerCase().trim();
+  document.querySelectorAll('.nav-link,.nav-sub').forEach(el=>{
+    if(!v){el.style.display='';el.classList.remove('hl');}
+    else{
+      const match=el.textContent.toLowerCase().includes(v);
+      el.style.display=match?'':'none';
+      el.classList.toggle('hl',match);
+      if(match)el.closest('.nav-group')?.classList.add('open');
+    }
+  });
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){const inp=document.querySelector('.sb-search input');inp.value='';searchNav('');inp.blur();}
+});
+
+(function(){
+  function _open(){
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('hamburger').classList.add('open');
+    document.getElementById('overlay').classList.add('visible');
+    document.body.style.overflow='hidden';
+  }
+  function _close(){
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('overlay').classList.remove('visible');
+    document.body.style.overflow='';
+  }
+  window.toggleSidebar=function(){
+    if(document.getElementById('sidebar').classList.contains('open')){_close();}else{_open();}
+  };
+  window.closeSidebar=_close;
+  function init(){
+    var hb=document.getElementById('hamburger');
+    var ov=document.getElementById('overlay');
+    if(hb){
+      hb.addEventListener('click',function(e){e.stopPropagation();window.toggleSidebar();});
+      hb.addEventListener('touchend',function(e){e.preventDefault();e.stopPropagation();window.toggleSidebar();},{passive:false});
+    }
+    if(ov){
+      ov.addEventListener('click',_close);
+      ov.addEventListener('touchend',function(e){e.preventDefault();_close();},{passive:false});
+    }
+  }
+
+  // Deep-link: si la URL tiene #p-XX al abrir, navegar directamente a esa página
+  function handleDeepLink(){
+    var hash = window.location.hash;
+    if(hash){
+      var id = hash.replace('#','');
+      if(document.getElementById(id)){
+        show(id,false);
+      }
+    }
+  }
+  window.addEventListener('hashchange',function(){var id=location.hash.replace('#','');if(document.getElementById(id))show(id,false);});
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', function(){ init(); handleDeepLink(); });
+  } else {
+    init(); handleDeepLink();
+  }
+
+})();
+</script>
+  <div id="errorBloqueo" style="position:fixed;top:0;left:0;width:100%;height:100%;
+  background:#fff;color:#333;z-index:999999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:sans-serif;text-align:center;padding:2rem;">
+  <h1 style="font-size:3rem;margin:0;">:(</h1>
+  <p style="font-size:1.2rem;max-width:500px;">
+    An unknown error occurred and the page could not be loaded. Please contact the site administrator.
+  </p>
+</div>
+<style>body{overflow:hidden!important;}</style>
+</body>
+</html>

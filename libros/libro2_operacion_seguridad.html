@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Libro II — Operación y Seguridad | Aldea Mayab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+:root{
+  --bg:#F4F6F5;--white:#FFFFFF;--ink:#111816;--ink-soft:#2C3A30;--ink-muted:#5A6E60;
+  --accent:#1F5C38;--accent-mid:#2E7D50;--accent-pale:#E8F4ED;
+  --sidebar-bg:#0D1A11;--sidebar-w:285px;--rule:#D0DAD3;
+  --red:#C0392B;--red-pale:#FDECEA;--amber:#C87D0A;--amber-pale:#FDF3E3;
+  --blue:#1A5C8A;--blue-pale:#E8F0F8;--radius:6px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);display:flex;min-height:100vh;font-size:14px;line-height:1.6;}
+#sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--sidebar-bg);position:fixed;top:0;left:0;display:flex;flex-direction:column;z-index:100;overflow-y:auto;}
+.sb-header{padding:22px 18px 16px;border-bottom:1px solid #1C301F;position:sticky;top:0;background:var(--sidebar-bg);z-index:10;}
+.sb-logo{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#5A9A68;margin-bottom:8px;}
+.sb-book{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#72D48A;margin-bottom:3px;}
+.sb-title{font-size:12.5px;font-weight:700;color:#E0EEE4;line-height:1.3;}
+.sb-search{position:sticky;top:0;z-index:5;background:var(--sidebar-bg, #0D1A11);padding:9px 12px;border-bottom:1px solid #1C301F;}
+.sb-search input{width:100%;background:#152019;border:1px solid #253828;border-radius:4px;padding:6px 9px;font-size:11px;color:#C0DEC8;font-family:'Inter',sans-serif;outline:none;}
+.sb-search input:focus{border-color:#72D48A;}
+.sb-search input::placeholder{color:#3A5A42;}
+nav{padding:6px 0 40px;}
+.nav-group{margin-bottom:1px;}
+.nav-group-btn{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;cursor:pointer;border-left:3px solid transparent;transition:all .15s;}
+.nav-group-btn:hover{background:rgba(114,212,138,.08);}
+.nav-group-btn.active{border-left-color:#72D48A;background:rgba(114,212,138,.12);}
+.nav-group-label{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#B8DEC0;}
+.nav-group-btn.active .nav-group-label{color:#72D48A;}
+.nav-arrow{font-size:8px;color:#3A5A42;transition:transform .2s;}
+.nav-group.open .nav-arrow{transform:rotate(90deg);}
+.nav-items{display:none;padding-bottom:4px;}
+.nav-group.open .nav-items{display:block;}
+.nav-link{display:block;padding:6px 16px 6px 28px;font-size:12px;font-weight:500;color:#A8D0B0;cursor:pointer;transition:all .15s;border-left:3px solid transparent;line-height:1.4;}
+.nav-link:hover{color:#E0F0E4;background:rgba(114,212,138,.07);}
+.nav-link.active{color:#FFFFFF;background:rgba(114,212,138,.14);border-left-color:#72D48A;font-weight:600;}
+.nav-sub{display:block;padding:4px 16px 4px 40px;font-size:11px;color:#6EA87A;cursor:pointer;transition:color .15s;}
+.nav-sub:hover{color:#A8D0B0;}
+#main{margin-left:var(--sidebar-w);flex:1;}
+#topbar{height:52px;background:var(--white);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:0 36px;position:sticky;top:0;z-index:50;}
+#breadcrumb{font-size:12px;color:var(--ink-muted);}
+#breadcrumb strong{color:var(--ink-soft);font-weight:600;}
+.topbar-meta{display:flex;gap:14px;font-size:11px;color:var(--ink-muted);flex-shrink:0;}
+.meta-code{font-family:monospace;color:var(--accent);font-weight:700;letter-spacing:.05em;}
+#content{padding:32px 44px 80px;max-width:900px;}
+.page{display:none;}
+.page.active{display:block;animation:fadeUp .2s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.proc-eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-mid);margin-bottom:5px;}
+.proc-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:6px;}
+.proc-subtitle{font-size:13.5px;color:var(--ink-muted);margin-bottom:22px;line-height:1.5;}
+.info-table{width:100%;border-collapse:collapse;border:1px solid var(--rule);margin-bottom:24px;background:var(--white);border-radius:var(--radius);overflow:hidden;}
+.info-table td{padding:10px 14px;border:1px solid var(--rule);vertical-align:top;}
+.it-label{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-muted);display:block;margin-bottom:2px;}
+.it-value{font-weight:600;color:var(--ink);font-size:13px;}
+.it-accent{background:var(--accent);}
+.it-accent .it-label{color:rgba(255,255,255,.65);}
+.it-accent .it-value{color:white;}
+.it-red{background:var(--red);}
+.it-red .it-label{color:rgba(255,255,255,.65);}
+.it-red .it-value{color:white;}
+.sec-h{display:flex;align-items:center;gap:10px;margin:24px 0 12px;}
+.sec-num{width:26px;height:26px;background:var(--accent);color:white;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;border-radius:4px;flex-shrink:0;}
+.sec-title{font-size:15px;font-weight:700;color:var(--ink);border-bottom:2px solid var(--accent-pale);padding-bottom:5px;flex:1;}
+.act-table{width:100%;border-collapse:collapse;margin-bottom:6px;font-size:13px;}
+.act-table thead tr{background:var(--accent);color:white;}
+.act-table thead th{padding:9px 12px;text-align:left;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.act-table tbody tr:nth-child(even){background:var(--accent-pale);}
+.act-table tbody tr:hover{background:#D0E8D8;}
+.act-table td{padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5;color:var(--ink-soft);}
+.sn{font-weight:800;color:var(--accent);font-size:16px;text-align:center;width:36px;}
+.s-name{font-weight:700;color:var(--ink);font-size:13px;margin-bottom:2px;}
+.resp{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em;margin-bottom:3px;}
+.resp-g{background:var(--accent-pale);color:var(--accent);}
+.resp-r{background:var(--red-pale);color:var(--red);}
+.resp-a{background:var(--amber-pale);color:var(--amber);}
+.resp-b{background:var(--blue-pale);color:var(--blue);}
+.alert{display:flex;gap:11px;padding:12px 14px;border-radius:var(--radius);margin:10px 0;font-size:13px;line-height:1.55;}
+.alert-icon{font-size:17px;flex-shrink:0;margin-top:1px;}
+.alert-body strong{display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px;}
+.a-green{background:var(--accent-pale);border-left:4px solid var(--accent-mid);color:var(--ink-soft);}
+.a-green strong{color:var(--accent);}
+.a-red{background:var(--red-pale);border-left:4px solid var(--red);color:#6B1A14;}
+.a-red strong{color:var(--red);}
+.a-amber{background:var(--amber-pale);border-left:4px solid var(--amber);color:#5A3A0A;}
+.a-amber strong{color:var(--amber);}
+.a-blue{background:var(--blue-pale);border-left:4px solid var(--blue);color:#1A3050;}
+.a-blue strong{color:var(--blue);}
+.step-list{list-style:none;margin:6px 0;}
+.step-list li{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #EBF0EC;font-size:13px;color:var(--ink-soft);line-height:1.5;}
+.step-list li:last-child{border-bottom:none;}
+.step-n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:var(--accent);color:white;border-radius:50%;font-size:10px;font-weight:800;flex-shrink:0;}
+.step-n-r{background:var(--red);}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
+.info-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:4px;}
+.info-card{background:var(--white);border:1px solid var(--rule);border-radius:var(--radius);padding:13px 14px;}
+.ic-label{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:5px;}
+.ic-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.ic-body{font-size:12px;color:var(--ink-muted);line-height:1.5;}
+.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em;}
+.b-g{background:var(--accent-pale);color:var(--accent);}
+.b-a{background:var(--amber-pale);color:var(--amber);}
+.b-r{background:var(--red-pale);color:var(--red);}
+.level{border:1px solid var(--rule);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;}
+.level-hdr{padding:9px 14px;font-size:11.5px;font-weight:700;}
+.level-body{padding:10px 14px;font-size:13px;color:var(--ink-soft);line-height:1.6;}
+.lv1 .level-hdr{background:var(--accent-pale);color:var(--accent);}
+.lv2 .level-hdr{background:var(--amber-pale);color:var(--amber);}
+.lv3 .level-hdr{background:var(--red-pale);color:var(--red);}
+.script-box{background:var(--ink);color:#E8F0EA;border-radius:var(--radius);padding:14px 18px;font-size:13.5px;line-height:1.7;margin:10px 0;}
+.script-label{font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#72D48A;margin-bottom:7px;}
+.proc-footer{margin-top:44px;padding-top:12px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-muted);}
+.hl{background:rgba(114,212,138,.15)!important;}
+
+#hamburger{display:none;position:fixed;top:10px;left:12px;z-index:300;background:var(--sidebar-bg);border:none;border-radius:6px;padding:10px 13px;cursor:pointer;flex-direction:column;gap:5px;box-shadow:0 2px 12px rgba(0,0,0,.5);touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;}
+#hamburger span{display:block;width:22px;height:2px;background:#72D48A;border-radius:2px;transition:all .25s;}
+#hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+#hamburger.open span:nth-child(2){opacity:0;}
+#hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:90;backdrop-filter:blur(1px);}
+#overlay.visible{display:block;}
+.fc-wrap{background:linear-gradient(180deg,#FCFDFC,#F7FAF8);border:1px solid var(--rule);border-radius:12px;padding:22px 20px 8px;margin:6px 0 22px;box-shadow:0 1px 2px rgba(17,24,22,.04),0 4px 14px rgba(17,24,22,.05);}
+.fc-wrap svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+.fc-legend{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;align-items:center;font-size:10px;color:var(--ink-muted);margin-top:14px;padding:10px 4px 12px;border-top:1px dashed var(--rule);font-weight:500;}
+.fc-legend b{color:var(--ink-soft);font-weight:700;}
+.fc-legend .fc-dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:middle;}
+.fc-legend .fc-diamond{display:inline-block;width:9px;height:9px;transform:rotate(45deg);margin-right:5px;vertical-align:middle;border:1.5px solid var(--amber);background:var(--amber-pale);}
+@media(max-width:768px){
+  #hamburger{display:flex;}
+  #sidebar{transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);}
+  #sidebar.open{transform:translateX(0);z-index:300;}
+  #main{margin-left:0!important;}
+  #topbar{padding:0 14px 0 56px;}
+  #breadcrumb{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:calc(100vw - 160px);}
+  .topbar-meta{display:none;}
+  #content{padding:22px 18px 80px;}
+  .proc-title{font-size:21px;}
+  .info-grid,.info-grid-3{grid-template-columns:1fr!important;}
+  .fc-wrap{padding:16px 12px 4px;margin:6px 0 18px;}
+  .fc-legend{gap:5px 12px;font-size:9.5px;}
+  .act-table{font-size:12px;}
+  .proc-footer{flex-direction:column;gap:3px;font-size:10px;}
+}
+
+/* Cover TOC grid */
+.cover-toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;}
+.toc-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;
+  background:var(--white,#fff);border:1px solid var(--rule,#E8EEE9);
+  border-radius:8px;cursor:pointer;transition:all .15s;}
+.toc-item:hover{border-color:var(--green,#1F5C38);background:rgba(31,92,56,.04);}
+.toc-item-num{font-size:11px;font-weight:800;color:var(--green,#1F5C38);
+  letter-spacing:.06em;text-transform:uppercase;min-width:28px;padding-top:1px;}
+.toc-item-title{font-size:13px;font-weight:700;color:var(--text,#111816);margin-bottom:3px;}
+.toc-item-desc{font-size:11px;color:var(--text-mid,#5A6E60);line-height:1.4;}
+@media(max-width:600px){.cover-toc-grid{grid-template-columns:1fr;}}
+
+/* nav-anchor: section label in nav — same page, no navigation */
+.nav-anchor{display:block;padding:3px 16px 3px 40px;font-size:10.5px;
+  color:#3E6047;cursor:default;line-height:1.4;user-select:none;}
+.nav-anchor::before{content:'§ ';opacity:.5;}
+
+
+/* ── Sidebar nav scrollable ── */
+#sidebar{overflow-y:hidden;display:flex;flex-direction:column;}
+#sidebar nav{flex:1;overflow-y:auto;overscroll-behavior:contain;}
+#sidebar nav::-webkit-scrollbar{width:4px;}
+#sidebar nav::-webkit-scrollbar-track{background:transparent;}
+#sidebar nav::-webkit-scrollbar-thumb{background:#2A4A30;border-radius:4px;}
+#sidebar nav::-webkit-scrollbar-thumb:hover{background:#3A6040;}
+
+
+:root{--green-950:#0d302a;--green-800:#174c40;--green-700:#246454;--green-50:#f0f6f3;--gold:#b18a43;--line:#d8e2dd;--muted:#65736d}
+body{font-weight:400}.proc-title{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:500;letter-spacing:-.015em}.proc-eyebrow,.it-label,.ic-label{font-weight:600}.sec-title,.s-name,.it-value{font-weight:500}
+#content{max-width:1040px}.page{background:#fff;border:1px solid var(--line);border-radius:14px;padding:42px 46px;box-shadow:0 8px 30px rgba(13,48,42,.045)}
+.home-link,.print-button{border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--green-800);font:500 11px Inter,sans-serif;padding:7px 10px;text-decoration:none;cursor:pointer}.topbar-meta{align-items:center}
+.status-guide{margin:20px 0}.status-guide h2,.quick h2,.decision-diagram h2{font-size:15px;font-weight:500;margin:0 0 12px}.status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.status-grid>div{border:1px solid var(--line);border-radius:10px;padding:13px}.status-grid b{font-size:10px;font-weight:600;letter-spacing:.06em}.status-grid p{margin:4px 0 0;font-size:12px;color:var(--muted)}
+.notice{border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:9px;padding:12px 14px;margin:14px 0;background:#fffaf0}.notice b{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#76591f}.notice p{margin:4px 0 0;font-size:12px;color:#5e5544}.notice.is-pending{border-left-color:#9a6922}.notice.is-reference{border-left-color:#39738f;background:#f2f8fb}.notice.is-reference b{color:#285c72}
+.quick{margin:0 0 18px;border:1px solid var(--line);border-radius:12px;background:var(--green-50);padding:16px}.quick dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0}.quick dl>div{background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px;min-width:0}.quick dt{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-700)}.quick dd{margin:4px 0 0;font-size:12px;color:var(--ink);overflow-wrap:anywhere}
+.decision-diagram{border:1px solid var(--line);border-radius:12px;background:#fbfdfc;padding:20px;margin:18px 0}.flow-start,.flow-end,.flow-step,.flow-decision{border:1px solid #b9d0c9;border-radius:10px;background:#fff;padding:12px 14px;text-align:center;font-size:12px;line-height:1.4}.flow-start{background:var(--green-950);color:#fff;border-color:var(--green-950);font-weight:500}.flow-end{background:var(--green-800);color:#fff;border-color:var(--green-800);font-weight:500}.flow-end.stop{background:#7d2e2a;border-color:#7d2e2a}.flow-decision{background:#fff8ea;border-color:#d9bd82;color:#654c1c;font-weight:500}.flow-arrow{text-align:center;color:var(--gold);font-size:20px;line-height:1.2}.flow-branches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0}.flow-branch{border-left:3px solid var(--green-700);background:#f1f7f4;border-radius:8px;padding:11px;font-size:11.5px}.flow-branch.stop{border-left-color:#983a36;background:#fbefee}.flow-branch.warn{border-left-color:#9a6922;background:#fff8e9}.flow-branch b{display:block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}.flow-note{font-size:10.5px;color:var(--muted);text-align:center;margin:10px 0 0}
+.alert-icon{font-size:9px!important;font-weight:600;letter-spacing:.08em;text-transform:uppercase;min-width:72px;margin-top:3px}
+.info-table,.act-table{display:block;overflow-x:auto;border-radius:10px}.info-table tbody,.act-table tbody{min-width:680px;display:table;width:100%}.act-table thead{min-width:680px;display:table;width:100%;table-layout:fixed}
+@media(max-width:900px){.page{padding:30px 24px}.proc-title{font-size:34px}.status-grid{grid-template-columns:1fr}}
+@media(max-width:768px){#content{padding:18px 12px 72px}.page{padding:24px 16px;border-radius:12px}.proc-title{font-size:30px}.quick dl,.flow-branches{grid-template-columns:1fr}.home-link,.print-button{display:none}.alert{display:block}.alert-icon{display:block;margin-bottom:5px}}
+@media print{#sidebar,#hamburger,#overlay,#topbar{display:none!important}#main{margin:0!important}#content{max-width:none;padding:0}.page{display:block!important;border:0;box-shadow:none;page-break-after:always;padding:18mm}.decision-diagram,.quick,.notice{break-inside:avoid}}
+</style>
+</head>
+<body>
+<button id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+<div id="overlay"></div>
+<aside id="sidebar">
+  <div class="sb-header">
+    <div class="sb-logo">Aldea Mayab · Bacalar</div>
+    <div class="sb-book">Libro II</div>
+    <div class="sb-title">Operación y Seguridad</div>
+  </div>
+  <div class="sb-search"><input type="text" placeholder="Buscar sección..." oninput="searchNav(this.value)"></div>
+  <nav>
+    <!-- 1.0 -->
+    <div class="nav-group open">
+      <div class="nav-group-btn active" onclick="toggleGroup(this)">
+        <span class="nav-group-label">1.0 Sistema Integral de Seguridad</span>
+        <span class="nav-arrow">▶</span>
+      </div>
+      <div class="nav-items">
+        <a class="nav-link active" onclick="show('p-cover')">Portada e Introducción</a>
+        <a class="nav-link" onclick="show('p-11-gov')">1.1 Gobierno de Seguridad</a>
+        <span class="nav-anchor">1.1.1 Modelo Mixto</span>
+        <span class="nav-anchor">1.1.2 Evaluación de Empresa</span>
+        <span class="nav-anchor">1.1.3 Capacitación del Personal</span>
+        <a class="nav-link" onclick="show('p-12-accesos')">1.2 Control de Accesos</a>
+        <span class="nav-anchor">1.2.1 Registro Digital en Vivook</span>
+        <span class="nav-anchor">1.2.2 Validación de Identidad</span>
+        <span class="nav-anchor">1.2.3 Registro de Salida</span>
+        <a class="nav-sub" onclick="show('p-12-vehicular')">↳ 1.2.4 Control Vehicular y Barrera</a>
+        <a class="nav-sub" onclick="show('p-12-proveedores')">↳ 1.2.5 Control de Proveedores</a>
+        <a class="nav-sub" onclick="show('p-12-huespedes')">↳ 1.2.6 Gestión de Huéspedes (Airbnb)</a>
+        <a class="nav-sub" onclick="show('p-12-cctv')">↳ 1.2.7 CCTV (Retención mínima 30 días)</a>
+        <a class="nav-sub" onclick="show('p-12-alerta')">↳ 1.2.8 Activación Nivel de Seguridad Elevado</a>
+        <a class="nav-link" onclick="show('p-13-incidentes')">1.3 Gestión de Incidentes</a>
+        <span class="nav-anchor">1.3.1 Registro Formal de Incidente</span>
+        <span class="nav-anchor">1.3.2 Clasificación por Nivel</span>
+        <span class="nav-anchor">1.3.3 Escalamiento</span>
+      </div>
+    </div>
+    <!-- 2.0 -->
+    <div class="nav-group">
+      <div class="nav-group-btn" onclick="toggleGroup(this)">
+        <span class="nav-group-label">2.0 Atención a Residentes y Huéspedes</span>
+        <span class="nav-arrow">▶</span>
+      </div>
+      <div class="nav-items">
+        <a class="nav-link" onclick="show('p-21-solicitudes')">2.1 Recepción de Solicitudes</a>
+        <a class="nav-link" onclick="show('p-22-quejas')">2.2 Gestión de Quejas</a>
+        <a class="nav-link" onclick="show('p-23-mediacion')">2.3 Mediación de Conflictos</a>
+        <a class="nav-link" onclick="show('p-24-paqueteria')">2.4 Gestión de Paquetería</a>
+        <a class="nav-link" onclick="show('p-25-comunicacion')">2.5 Comunicación Oficial</a>
+      </div>
+    </div>
+  </nav>
+</aside>
+<div id="main">
+  <div id="topbar">
+    <div id="breadcrumb">Libro II › <strong>Portada e Introducción</strong>
+</div>
+    <div>
+<a class="home-link" href="../index.html">Centro operativo</a><span class="meta-code">LIB-AM-02</span><span>v13.0 · 1 oct 2026</span><button class="print-button" type="button" onclick="window.print()">Imprimir</button>
+</div>
+</div>
+  <div id="content">
+
+<!-- ══ PORTADA ══ -->
+<div class="page active" id="p-cover">
+  <div class="proc-eyebrow">Aldea Mayab · Bacalar · Libro II</div>
+  <h1 class="proc-title">Operación y Seguridad</h1>
+  <p class="proc-subtitle">Sistema integral de seguridad, control de accesos, gestión de incidentes y atención a residentes</p>
+  <aside class="notice is-pending"><b>Borrador en validación</b><p>Los horarios, tiempos máximos, facultades, retención de grabaciones, criterios de reincidencia y autorizaciones se conservan como REFERENCIA hasta contrastarlos con contratos, avisos de privacidad, reglamento y nombramientos vigentes.</p></aside><table class="info-table">
+    <tr>
+      <td>
+<span class="it-label">Código</span><span class="it-value">LIB-AM-02</span>
+</td>
+      <td>
+<span class="it-label">Versión</span><span class="it-value">13.0</span>
+</td>
+      <td>
+<span class="it-label">Fecha de emisión</span><span class="it-value">1 de octubre de 2026</span>
+</td>
+    </tr>
+    <tr>
+      <td>
+<span class="it-label">Elaboró</span><span class="it-value">Equipo de Operación</span>
+</td>
+      <td>
+<span class="it-label">Revisó</span><span class="it-value">Responsables de Seguridad y Recepción</span>
+</td>
+      <td>
+<span class="it-label">Aprobó</span><span class="it-value">PENDIENTE de evidencia formal</span>
+</td>
+    </tr>
+    <tr>
+      <td class="it-accent" colspan="3">
+<span class="it-label">Principio rector</span><span class="it-value">El personal no discute reglas, no negocia seguridad y no toma decisiones discrecionales fuera del manual. "Si no está en el sistema, no entró." Sin excepciones.</span>
+</td>
+    </tr>
+  </table>
+  <section class="status-guide"><h2>Jerarquía de la información</h2>
+<div class="status-grid">
+<div>
+<b>AUTORIZADA</b><p>Existe aprobación y evidencia vigente.</p>
+</div>
+<div>
+<b>REFERENCIA</b><p>Orienta la operación, pero requiere contraste.</p>
+</div>
+<div>
+<b>PENDIENTE</b><p>No habilita acceso, sanción ni divulgación.</p>
+</div>
+</div></section><div class="cover-toc-grid">
+<div class="toc-item" onclick="show('p-11-gov')">
+<div class="toc-item-num">1.1</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Gobierno de Seguridad</div>
+<div class="toc-item-desc">Modelo mixto, empresa de seguridad y capacitación</div>
+</div>
+</div>
+<div class="toc-item" onclick="show('p-12-accesos')">
+<div class="toc-item-num">1.2</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Control de Accesos</div>
+<div class="toc-item-desc">8 procedimientos: residentes, huéspedes, proveedores, CCTV</div>
+</div>
+</div>
+<div class="toc-item" onclick="show('p-13-incidentes')">
+<div class="toc-item-num">1.3</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Gestión de Incidentes</div>
+<div class="toc-item-desc">Registro, clasificación por nivel y escalamiento</div>
+</div>
+</div>
+<div class="toc-item" onclick="show('p-21-solicitudes')">
+<div class="toc-item-num">2.1</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Solicitudes de Servicio</div>
+<div class="toc-item-desc">Recepción, priorización y seguimiento</div>
+</div>
+</div>
+<div class="toc-item" onclick="show('p-22-quejas')">
+<div class="toc-item-num">2.2</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Quejas y Reclamaciones</div>
+<div class="toc-item-desc">Gestión formal, tiempos de respuesta y cierre</div>
+</div>
+</div>
+<div class="toc-item" onclick="show('p-23-mediacion')">
+<div class="toc-item-num">2.3</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Mediación de Conflictos</div>
+<div class="toc-item-desc">Protocolo de mediación entre residentes</div>
+</div>
+</div>
+<div class="toc-item" onclick="show('p-24-paqueteria')">
+<div class="toc-item-num">2.4</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Paquetería y Entregas</div>
+<div class="toc-item-desc">Recepción, custodia y notificación al residente</div>
+</div>
+</div>
+<div class="toc-item" onclick="show('p-25-comunicacion')">
+<div class="toc-item-num">2.5</div>
+<div class="toc-item-body">
+<div class="toc-item-title">Comunicación Oficial</div>
+<div class="toc-item-desc">Canales, tonos y plantillas de comunicación</div>
+</div>
+</div>
+</div>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · Portada</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.1 GOBIERNO DE SEGURIDAD ══ -->
+<div class="page" id="p-11-gov">
+  <div class="proc-eyebrow">1.0 Sistema Integral de Seguridad · 1.1</div>
+  <h1 class="proc-title">1.1 Gobierno de Seguridad</h1>
+  <p class="proc-subtitle">Modelo mixto de operación, evaluación de empresa externa y capacitación del personal</p>
+
+  <section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Inicio de turno o supervisión</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Jefe de Seguridad / responsable de turno</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Confirmar cobertura, mando y novedades</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>Escalar ausencia, contradicción o incumplimiento</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Bitácora, asistencia y evaluación</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">1.1.1 Modelo Mixto — Empresa Externa + Supervisión Interna</div>
+</div>
+  <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin-bottom:12px;">La seguridad del residencial opera bajo un modelo mixto donde una empresa externa provee los guardias operativos, pero la supervisión, auditoría de registros y coordinación de protocolos recae en el Jefe de Seguridad interno del residencial.</p>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:180px">Responsabilidad</th>
+<th>Empresa externa de seguridad</th>
+<th style="width:200px">Jefe de Seguridad interno</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Personal operativo</strong></td>
+<td>Provee y administra a los guardias · Cubre bajas y ausencias</td>
+<td>Supervisa presencia y desempeño</td>
+</tr>
+      <tr>
+<td><strong>Protocolos</strong></td>
+<td>Ejecuta los procedimientos del manual</td>
+<td>Define y actualiza los protocolos</td>
+</tr>
+      <tr>
+<td><strong>Registros</strong></td>
+<td>Captura en el sistema según procedimiento</td>
+<td>Audita registros diariamente</td>
+</tr>
+      <tr>
+<td><strong>Emergencias</strong></td>
+<td>Ejecuta el protocolo indicado</td>
+<td>Coordina y decide en campo</td>
+</tr>
+      <tr>
+<td><strong>Capacitación</strong></td>
+<td>Asiste a capacitaciones convocadas</td>
+<td>Coordina y evalúa el aprendizaje</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="alert a-amber">
+<div class="alert-icon">VALIDAR</div>
+<div class="alert-body">
+<strong>Línea de mando clara</strong>Los guardias de la empresa externa siguen instrucciones operativas del Jefe de Seguridad interno del residencial en todo momento. Cualquier conflicto entre instrucciones de la empresa y los protocolos del manual se resuelve aplicando el manual del residencial y notificando a la empresa.</div>
+</div>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">1.1.2 Evaluación de Empresa de Seguridad</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:160px">Criterio de evaluación</th>
+<th>Descripción</th>
+<th style="width:100px">Frecuencia</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Cumplimiento de protocolos</strong></td>
+<td>Porcentaje de registros completos y correctos en el sistema · Incidentes mal documentados · Llegadas tarde a turno</td>
+<td>Mensual</td>
+</tr>
+      <tr>
+<td><strong>Tiempo de respuesta</strong></td>
+<td>Tiempo promedio desde detección hasta notificación al Jefe de Seguridad (&lt;3 minutos como objetivo)</td>
+<td>Por incidente</td>
+</tr>
+      <tr>
+<td><strong>Presentación y conducta</strong></td>
+<td>Uniforme completo · Trato profesional con residentes · Cero confrontaciones no autorizadas</td>
+<td>Mensual</td>
+</tr>
+      <tr>
+<td><strong>Evaluación formal</strong></td>
+<td>Evaluación trimestral documentada · Calificación mínima de 80 puntos para continuar el contrato</td>
+<td>Trimestral</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">1.1.3 Capacitación del Personal</div>
+</div>
+  <div class="info-grid">
+    <div class="info-card">
+<div class="ic-label">Inducción obligatoria (al ingreso)</div>
+<div class="ic-body">Lectura completa del manual · Recorrido por instalaciones · Práctica en el sistema · Simulación de 5 escenarios de acceso · Firma de acuse de conocimiento del reglamento</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Certificación obligatoria</div>
+<div class="ic-body">Primeros auxilios — Cruz Roja Mexicana o institución autorizada · Vigencia: 2 años · Mínimo 8 horas presenciales</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Jefe de Seguridad (adicional)</div>
+<div class="ic-body">RCP con DEA · Coordinación de Brigadas de Protección Civil · Mínimo 16 horas · Vigencia: 2 años</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Capacitación continua</div>
+<div class="ic-body">Simulacros bimestrales obligatorios · Capacitación anual en fauna local con biólogo especialista · Actualización de protocolos en cada versión del manual</div>
+</div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num">4</div>
+<div class="sec-title">1.1.4 Protocolo de Relevo — Guardia sin Sustituto</div>
+</div>
+  <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin-bottom:12px;">La caseta de seguridad nunca puede quedar desatendida. Si el guardia entrante no se presenta a la hora acordada, aplica el siguiente protocolo escalonado:</p>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:120px">Tiempo sin relevo</th>
+<th>Acción obligatoria</th>
+<th style="width:140px">Responsable</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>+15 minutos</strong></td>
+<td>Guardia en turno notifica por WhatsApp al Jefe de Seguridad indicando que el relevo no se ha presentado. Permanece en caseta.</td>
+<td>Guardia en turno</td>
+</tr>
+      <tr>
+<td><strong>+30 minutos</strong></td>
+<td>Jefe de Seguridad contacta a la empresa externa de seguridad para solicitar sustitución urgente. Si no hay respuesta en 15 minutos: notifica a Gerencia Administrativa.</td>
+<td>Jefe de Seguridad</td>
+</tr>
+      <tr>
+<td><strong>+60 minutos</strong></td>
+<td>Si la empresa no ha enviado sustituto: Gerencia Administrativa autoriza el cierre parcial de acceso vehicular (barrera en modo manual). El guardia permanece en caseta bajo protocolo de bitácora física hasta que llegue el relevo.</td>
+<td>Gerencia Administrativa</td>
+</tr>
+      <tr>
+<td><strong>+2 horas</strong></td>
+<td>Gerencia informa a Dirección General. Se activa procedimiento de sanción contractual a la empresa externa. Dirección General decide si se convoca a personal interno de guardia o se contrata servicio de emergencia.</td>
+<td>Dirección General</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="alert a-red">
+<div class="alert-icon">CRÍTICO</div>
+<div class="alert-body">
+<strong>Prohibido absoluto:</strong> El guardia no puede abandonar la caseta por ningún motivo hasta que haya un relevo físicamente presente. La ausencia no justificada del puesto es causa de rescisión del contrato con la empresa proveedora.</div>
+</div>
+
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 1.1 Gobierno de Seguridad</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.2 CONTROL DE ACCESOS (1.2.1–1.2.3) ══ -->
+<div class="page" id="p-12-accesos">
+  <div class="proc-eyebrow">1.0 Sistema Integral de Seguridad · 1.2</div>
+  <h1 class="proc-title">1.2 Control de Accesos</h1>
+  <p class="proc-subtitle">Registro digital, validación de identidad y registro de salida — 100% digital, sin excepciones</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Persona solicita ingreso</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Seguridad</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Verificar registro antes de abrir</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>Denegar si no existe autorización verificable</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Vivook, identidad, entrada y salida</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Acceso de visitantes"><h2>Acceso de visitantes</h2>
+<div class="flow-start">Llegada de visitante</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">¿Existe invitación vigente en Vivook?</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Sí</b>Validar QR e identidad oficial</div>
+<div class="flow-branch stop">
+<b>No</b>Solicitar autorización verificable al responsable; sin ella, denegar</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Registrar entrada y evidencia</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Acceso autorizado</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><table class="info-table">
+    <tr>
+      <td class="it-red" colspan="3">
+<span class="it-label">Regla de oro</span><span class="it-value">"Si no está en el sistema, no entró." — Sin registro en el sistema o Vivook no se autoriza ningún acceso, sin importar el nivel de insistencia del visitante o la urgencia alegada.</span>
+</td>
+    </tr>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">1.2.1 Registro Digital Obligatorio en Vivook</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Actividad</th>
+<th>Detalle</th>
+<th style="width:120px">Responsable</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Validar QR en Vivook</div></td>
+<td>Escanear QR del huésped/residente con tablet en recepción. El sistema verifica automáticamente: vigencia del QR, estatus de moroso de la unidad y si el visitante está habilitado.</td>
+<td><span class="resp resp-g">Recepcionista</span></td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Capturar en el sistema</div></td>
+<td>Registrar: unidad de destino, nombre del visitante, hora de ingreso, número de personas. El registro debe completarse antes de permitir el paso.</td>
+<td><span class="resp resp-g">Recepcionista</span></td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Digitalización matutina</div></td>
+<td>Todos los registros físicos nocturnos deben estar en el sistema antes de las 10:00 AM del día siguiente. La tasa de digitalización objetivo es 100%.</td>
+<td><span class="resp resp-g">Recepcionista diurno</span></td>
+</tr>
+    </tbody>
+  </table>
+  <div class="alert a-green">
+<div class="alert-icon">ACCIÓN</div>
+<div class="alert-body">
+<strong>Política "Cero Papel"</strong>La bitácora física nocturna es temporal. El 100% de los registros debe digitalizarse en el sistema antes de las 10:00 AM. Un registro que no está en el sistema no ocurrió operativamente.</div>
+</div>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">1.2.2 Validación de Identidad</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Actividad</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Solicitar identificación oficial</div></td>
+<td>INE, Pasaporte o documento oficial con fotografía. Sin excepción y sin importar el horario, la edad aparente o el insistencia del visitante.</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Fotografiar identificación</div></td>
+<td>Tomar foto clara de ambas caras de la identificación. Guardar en carpeta cifrada de Google Drive. Las fotos se eliminan 72 horas después del check-out.</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Capturar firma digital</div></td>
+<td>El huésped firma en tablet como constancia de haber recibido y aceptado las reglas del residencial. Sin firma no se autoriza el acceso.</td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td><div class="s-name">Negativa a identificarse</div></td>
+<td>Sin identificación NO se autoriza el acceso — 24/7, sin excepciones. Frase obligatoria: "Por normativa de seguridad y reglamento interno, la identificación oficial es obligatoria para autorizar el acceso."</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="alert a-red">
+<div class="alert-icon">CRÍTICO</div>
+<div class="alert-body">
+<strong>Privacidad de datos</strong>Las fotos de IDs son confidenciales. Prohibido compartirlas fuera del grupo operativo, enviarlas por WhatsApp personal o conservarlas más de 72 horas tras el check-out. El incumplimiento es causa de rescisión.</div>
+</div>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">1.2.3 Registro de Salida</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Actividad</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Check-out en el sistema</div></td>
+<td>Registrar hora de salida del huésped. El sistema cierra automáticamente el QR si era de uso único o si venció la vigencia.</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Verificar estado de unidad</div></td>
+<td>Si aplica (rentas vacacionales): coordinar con PM/Propietario la confirmación de salida completa antes de cerrar el registro.</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Eliminar fotos a las 72h</div></td>
+<td>El sistema o el responsable de turno elimina las fotos de ID de la carpeta de Google Drive a las 72 horas exactas del check-out registrado.</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 1.2 Control de Accesos (1.2.1–1.2.3)</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.2.4 VEHICULAR ══ -->
+<div class="page" id="p-12-vehicular">
+  <div class="proc-eyebrow">1.0 Sistema Integral de Seguridad · 1.2.4</div>
+  <h1 class="proc-title">1.2.4 Control Vehicular y Barrera</h1>
+  <p class="proc-subtitle">Operación de la pluma, registro de placas y protocolo de fallo mecánico</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Vehículo llega a la barrera</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Seguridad</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Detener y validar placa/autorización</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>Usar contingencia sin perder control del acceso</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Placa, hora y responsable</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Control vehicular"><h2>Control vehicular</h2>
+<div class="flow-start">Vehículo en barrera</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">¿La barrera responde y la placa está autorizada?</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Sí</b>Registrar placa y permitir paso</div>
+<div class="flow-branch warn">
+<b>No</b>Aplicar contingencia de barrera y validar autorización antes de abrir</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Registrar hora y responsable</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Paso autorizado</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Procedimiento de Ingreso Vehicular</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Actividad</th>
+<th>Detalle</th>
+<th style="width:120px">Responsable</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Detección de vehículo</div></td>
+<td>Recepcionista verifica QR/identidad del conductor desde tablet. Guardia observa aproximación en cámara 1 (acceso principal).</td>
+<td><span class="resp resp-g">Recepcionista / Guardia</span></td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Validar acceso</div></td>
+<td>Validar QR en Vivook o verificar registro en el sistema. Capturar número de placas en el registro de ingreso.</td>
+<td><span class="resp resp-g">Recepcionista</span></td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Abrir barrera</div></td>
+<td>Solo al confirmar acceso válido: activar apertura de barrera. El vehículo debe cruzar el sensor de paso en máx. 30 segundos. Si no avanza: bajar pluma y solicitar avanzar.</td>
+<td><span class="resp resp-g">Guardia</span></td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td><div class="s-name">Monitorear ingreso completo</div></td>
+<td>Vigilar en cámara hasta que el vehículo complete el ingreso. Bajar pluma inmediatamente tras el paso confirmado por sensor.</td>
+<td><span class="resp resp-g">Guardia</span></td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Protocolo de Fallo de Barrera</div>
+</div>
+  <ol class="step-list">
+    <li>
+<span class="step-n step-n-r">1</span><div>Activar botón de emergencia (lado izquierdo de caseta) para bloquear el sistema automático</div>
+</li>
+    <li>
+<span class="step-n step-n-r">2</span><div>Bajar pluma manualmente con llave física ubicada en caja fuerte de caseta</div>
+</li>
+    <li>
+<span class="step-n step-n-r">3</span><div>Colocar cono de seguridad "PLUMA FUERA DE SERVICIO" frente al acceso</div>
+</li>
+    <li>
+<span class="step-n step-n-r">4</span><div>Notificar inmediatamente al Jefe de Seguridad y a la Gerencia Administrativa</div>
+</li>
+    <li>
+<span class="step-n step-n-r">5</span><div>Mientras se repara: control manual de accesos con guardia físico en acceso, registro en bitácora física</div>
+</li>
+  </ol>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 1.2.4 Control Vehicular y Barrera</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.2.5 PROVEEDORES ══ -->
+<div class="page" id="p-12-proveedores">
+  <div class="proc-eyebrow">1.0 Sistema Integral de Seguridad · 1.2.5</div>
+  <h1 class="proc-title">1.2.5 Control de Proveedores</h1>
+  <p class="proc-subtitle">Registro, zona de estacionamiento permitida y supervisión durante el servicio</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Proveedor o contratista llega</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Seguridad</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Confirmar cita e identidad</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>No permitir ingreso sin autorización vigente</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Empresa, persona, placa, entrada y salida</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Ingreso de proveedores"><h2>Ingreso de proveedores</h2>
+<div class="flow-start">Proveedor en acceso</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">¿Cuenta con cita vigente e identificación?</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Sí</b>Emitir pase temporal e indicar estacionamiento autorizado</div>
+<div class="flow-branch stop">
+<b>No</b>No permitir ingreso; contactar al responsable de la cita</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Registrar entrada, placa y salida</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Acceso autorizado</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><table class="info-table">
+    <tr>
+      <td class="it-accent" colspan="2">
+<span class="it-label">Política base</span><span class="it-value">Ningún proveedor accede sin registro previo en el sistema y sin que la unidad que solicitó el servicio haya confirmado la cita. Los proveedores solo pueden estacionar en el área designada de proveedores.</span>
+</td>
+    </tr>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Procedimiento de Acceso para Proveedores</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Actividad</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Verificar cita previa</div></td>
+<td>Contactar a la unidad solicitante para confirmar que efectivamente tiene cita con ese proveedor a esa hora. Sin confirmación de la unidad: no se autoriza el acceso.</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Identificar al proveedor</div></td>
+<td>Solicitar identificación oficial y fotografiarla. Registrar nombre de la empresa, tipo de servicio y unidad a la que va. Capturar en el sistema.</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Entregar pase de proveedor</div></td>
+<td>Pase físico temporal que indica: fecha, hora de ingreso, unidad de destino y hora límite de salida. Debe ser visible en todo momento.</td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td><div class="s-name">Indicar estacionamiento</div></td>
+<td>Dirigir al área de estacionamiento exclusiva para proveedores. Prohibido estacionar en cajones de residentes.</td>
+</tr>
+      <tr>
+<td class="sn">5</td>
+<td><div class="s-name">Registro de salida</div></td>
+<td>Al salir: recoger el pase temporal, registrar hora de salida en el sistema y verificar que no sale con pertenencias del residencial.</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 1.2.5 Control de Proveedores</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.2.6 HUÉSPEDES AIRBNB ══ -->
+<div class="page" id="p-12-huespedes">
+  <div class="proc-eyebrow">1.0 Sistema Integral de Seguridad · 1.2.6</div>
+  <h1 class="proc-title">1.2.6 Gestión de Huéspedes (Airbnb / Rentas)</h1>
+  <p class="proc-subtitle">Check-in de huéspedes de plataformas de renta vacacional — responsabilidad del Property Manager</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Huésped llega al residencial</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Recepción y Seguridad</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Validar QR, identidad y unidad</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>Contactar al PM; no improvisar autorizaciones</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Reserva, QR, identidad y hora</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Ingreso de huéspedes"><h2>Ingreso de huéspedes</h2>
+<div class="flow-start">Huésped en acceso</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">¿QR Vivook e identidad coinciden con la reserva?</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Sí</b>Registrar y orientar al huésped</div>
+<div class="flow-branch stop">
+<b>No</b>Contactar al property manager; sin validación, no permitir ingreso</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Conservar evidencia de la validación</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Acceso autorizado</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><table class="info-table">
+    <tr>
+      <td class="it-accent" colspan="2">
+<span class="it-label">Responsabilidad PM</span><span class="it-value">El Property Manager es responsable solidario de la conducta de sus huéspedes. Debe generar el QR de acceso en Vivook y enviar el mensaje de bienvenida antes de la llegada del huésped.</span>
+</td>
+    </tr>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Check-in Diurno (07:00–21:00 hrs)</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:160px">Actividad</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Validar QR</div></td>
+<td>Escanear QR generado por el PM en Vivook. Verificar: vigencia, unidad correspondiente, estatus de la unidad (sin adeudo).</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Identificar al huésped</div></td>
+<td>Solicitar y fotografiar INE o Pasaporte. Tomar biometría (firma en tablet). Registrar número de personas en el grupo.</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Entregar reglamento</div></td>
+<td>Entregar o mostrar el reglamento del residencial. Destacar verbalmente: horario de silencio, restricciones en laguna y normas de amenidades.</td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td><div class="s-name">Asignar brazalete o credencial</div></td>
+<td>Si el residencial usa sistema de identificación visual (brazalete de color por torre o tipo de estancia): entregar y explicar su uso.</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Check-in Nocturno (21:00–07:00 hrs)</div>
+</div>
+  <div class="alert a-amber">
+<div class="alert-icon">VALIDAR</div>
+<div class="alert-body">
+<strong>Protocolo Híbrido Nocturno</strong>El guardia nocturno gestiona los ingresos con bitácora física + fotografías en celular de respaldo. Todo debe digitalizarse en el sistema antes de las 10:00 AM del día siguiente por el recepcionista diurno.</div>
+</div>
+  <div class="script-box">
+    <div class="script-label">Mensaje de bienvenida para PM — enviar antes de llegada del huésped</div>
+    "Estimado Huésped, bienvenido a Aldea Mayab. Para agilizar su acceso, le informamos que nuestro horario de recepción es de 07:00 a 21:00 hrs. Si su llegada es posterior, nuestro oficial de seguridad realizará un registro manual y tomará fotografías de su identificación y placas vehiculares. Agradecemos su cooperación para mantener la seguridad del complejo."
+  </div>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 1.2.6 Gestión de Huéspedes</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.2.7 CCTV ══ -->
+<div class="page" id="p-12-cctv">
+  <div class="proc-eyebrow">1.0 Sistema Integral de Seguridad · 1.2.7</div>
+  <h1 class="proc-title">1.2.7 CCTV — Retención Mínima 30 Días</h1>
+  <p class="proc-subtitle">Gestión del sistema de videovigilancia, acceso a grabaciones y custodia de evidencias</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Se solicita revisar o extraer video</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Responsable autorizado</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Preservar evidencia y verificar autorización</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>Escalar toda solicitud externa o de datos personales</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Solicitud, autorización, copia y entrega</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Solicitud de grabaciones"><h2>Solicitud de grabaciones</h2>
+<div class="flow-start">Solicitud de acceso a grabación</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">¿Existe autorización y el material está disponible?</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Sí</b>Preservar, generar copia controlada y registrar entrega</div>
+<div class="flow-branch stop">
+<b>No</b>Denegar o escalar; no compartir datos ni imágenes</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Mantener cadena de custodia</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Entrega controlada</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Política de Retención y Acceso</div>
+</div>
+  <div class="info-grid">
+    <div class="info-card">
+<div class="ic-label">Retención mínima</div>
+<div class="ic-body">30 días corridos de grabación continua en todas las cámaras activas. No se pueden sobrescribir grabaciones con menos de 30 días de antigüedad.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Acceso autorizado</div>
+<div class="ic-body">Jefe de Seguridad · Gerencia Administrativa · Dirección General · Autoridades con orden oficial. Ningún otro personal tiene acceso al sistema DVR/NVR.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Conservación extendida</div>
+<div class="ic-body">Grabaciones vinculadas a un incidente registrado deben preservarse por 90 días adicionales al cierre del caso, o hasta resolución legal si aplica.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Cámaras mínimas</div>
+<div class="ic-body">Acceso principal · Caseta de seguridad · Estacionamientos A y B · Acceso a torres · Lobby · PTAR · Casa Club · Áreas de amenidades</div>
+</div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Procedimiento ante Solicitud de Grabaciones</div>
+</div>
+  <ol class="step-list">
+    <li>
+<span class="step-n">1</span><div>Solicitud escrita al Jefe de Seguridad indicando: fecha/hora del evento, cámara aproximada y motivo de la solicitud</div>
+</li>
+    <li>
+<span class="step-n">2</span><div>Jefe de Seguridad verifica que quien solicita tiene autorización para acceder a las grabaciones</div>
+</li>
+    <li>
+<span class="step-n">3</span><div>Si la solicitud proviene de autoridades (Ministerio Público, policía): notificar a Gerencia Administrativa y Dirección General antes de cualquier entrega</div>
+</li>
+    <li>
+<span class="step-n">4</span><div>Registrar en bitácora: quién solicitó, qué período, quién entregó y fecha de entrega</div>
+</li>
+  </ol>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">Protocolo ante Falla de Grabación (Gap en CCTV)</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:200px">Situación</th>
+<th>Acción requerida</th>
+<th style="width:140px">Responsable</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Falla detectada en revisión rutinaria</strong></td>
+<td>Registrar en el sistema: cámara afectada, período sin grabación (hora inicio – hora fin estimada), causa si se conoce. Notificar a Jefe de Seguridad en máx. 1 hora.</td>
+<td>Guardia / Recepcionista</td>
+</tr>
+      <tr>
+<td><strong>Falla coincide con un incidente registrado</strong></td>
+<td>Notificación inmediata a Gerencia Administrativa y Dirección General. Se levanta acta formal documentando el gap: fecha, duración, cámara, incidente relacionado. El acta se resguarda en el expediente del incidente y puede ser relevante como evidencia en procesos legales.</td>
+<td>Jefe de Seguridad + Gerencia</td>
+</tr>
+      <tr>
+<td><strong>Falla por fallo técnico del DVR/NVR</strong></td>
+<td>Contactar al proveedor técnico del sistema en máx. 2 horas. Si la falla persiste más de 4 horas: activar guardia adicional en las áreas no cubiertas hasta restaurar la grabación. Registrar en el sistema cada hora el estado del sistema.</td>
+<td>Jefe de Mantenimiento + Jefe de Seguridad</td>
+</tr>
+      <tr>
+<td><strong>Falla recurrente en la misma cámara</strong></td>
+<td>Si una cámara falla más de 2 veces en un mes: orden de trabajo correctiva obligatoria con plazo máximo de 5 días hábiles. Incluir en el reporte mensual al Comité Operativo.</td>
+<td>Jefe de Mantenimiento</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="alert a-red">
+<div class="alert-icon">CRÍTICO</div>
+<div class="alert-body">
+<strong>Un gap no documentado es un pasivo legal.</strong> Toda interrupción de grabación debe quedar registrada en el sistema con acta, independientemente de si hubo o no un incidente durante ese período.</div>
+</div>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 1.2.7 CCTV</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.2.8 ALERTA ══ -->
+<div class="page" id="p-12-alerta">
+  <div class="proc-eyebrow">1.0 Sistema Integral de Seguridad · 1.2.8</div>
+  <h1 class="proc-title">1.2.8 Activación de Nivel de Seguridad Elevado</h1>
+  <p class="proc-subtitle">Niveles verde / naranja / rojo — criterios de activación y medidas por nivel</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Se detecta una condición anormal</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Seguridad</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Clasificar nivel y proteger personas</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>Llamar al 911 ante riesgo grave o delito</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Hora, nivel, decisiones y normalización</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Nivel de seguridad"><h2>Nivel de seguridad</h2>
+<div class="flow-start">Alerta detectada</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">Clasificar el nivel por riesgo real</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Nivel 1</b>Gestionar en sitio y monitorear</div>
+<div class="flow-branch warn">
+<b>Nivel 2</b>Notificar al responsable de seguridad</div>
+<div class="flow-branch stop">
+<b>Nivel 3</b>Proteger personas, llamar al 911 y activar cadena</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Documentar decisiones y normalización</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Condición controlada</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Semáforo de Seguridad</div>
+</div>
+  <div class="level lv1">
+    <div class="level-hdr">Nivel Verde — Operación Normal</div>
+    <div class="level-body">Operación estándar. Todos los procedimientos del manual en vigor. Sin medidas adicionales. Monitoreo rutinario de cámaras.</div>
+  </div>
+  <div class="level lv2">
+    <div class="level-hdr">Nivel Naranja — Alerta Preventiva</div>
+    <div class="level-body">Activa cuando: hay reporte de incidente en residenciales vecinos · Alerta meteorológica activa · Visitante conflictivo el día anterior · Evento masivo no autorizado detectado.<br><br><strong>Medidas adicionales:</strong> Dos guardias en acceso simultáneamente · Verificación de ID doble en ingresos · Monitoreo de cámaras cada 30 minutos · Notificar a todos los turnos del estado de alerta.</div>
+  </div>
+  <div class="level lv3">
+    <div class="level-hdr">Nivel Rojo — Emergencia Activa</div>
+    <div class="level-body">Activa cuando: intrusión confirmada · Persona agresiva en instalaciones · Alerta de huracán categoría 1 o superior · Emergencia médica crítica en curso.<br><br><strong>Medidas adicionales:</strong> Cierre de accesos secundarios · Llamar al 911 si corresponde · Notificar a Gerencia y Dirección de inmediato · Activar protocolo específico del Libro III · Registro continuo de novedades cada 30 minutos.</div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Autorización para Activar</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th>Nivel</th>
+<th style="width:200px">¿Quién puede activar?</th>
+<th>¿Quién debe ser notificado?</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><span class="badge b-g">Verde</span></td>
+<td>Estado por defecto</td>
+<td>N/A</td>
+</tr>
+      <tr>
+<td><span class="badge b-a">Naranja</span></td>
+<td>Jefe de Seguridad o Guardia en turno</td>
+<td>Jefe de Seguridad + Gerencia Administrativa</td>
+</tr>
+      <tr>
+<td><span class="badge b-r">Rojo</span></td>
+<td>Cualquier personal ante emergencia inmediata</td>
+<td>Jefe de Seguridad + Gerencia + Dirección General + 911 si aplica</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 1.2.8 Activación de Nivel de Seguridad Elevado</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 1.3 GESTIÓN DE INCIDENTES ══ -->
+<div class="page" id="p-13-incidentes">
+  <div class="proc-eyebrow">1.0 Sistema Integral de Seguridad · 1.3</div>
+  <h1 class="proc-title">1.3 Gestión de Incidentes</h1>
+  <p class="proc-subtitle">Registro formal, clasificación por nivel y escalamiento — todo incidente queda documentado</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Ocurre o se reporta un incidente</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Quien detecta / Seguridad</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Proteger, registrar y clasificar</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>Escalar si aumenta el riesgo o no se controla</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Folio, evidencia, responsables y cierre</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Gestión de incidentes"><h2>Gestión de incidentes</h2>
+<div class="flow-start">Incidente detectado</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">Registrar hechos y clasificar nivel</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Controlable</b>Gestionar en sitio y monitorear</div>
+<div class="flow-branch warn">
+<b>Requiere apoyo</b>Notificar al responsable y coordinar respuesta</div>
+<div class="flow-branch stop">
+<b>Riesgo grave</b>911 y cadena de mando inmediata</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Verificar resolución y evidencia</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Incidente cerrado</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><table class="info-table">
+    <tr>
+      <td class="it-accent" colspan="2">
+<span class="it-label">Principio</span><span class="it-value">Un incidente no documentado no existe operativamente. El registro en el sistema es obligatorio para TODO incidente, sin importar si parece menor. La bitácora es la única defensa legal y administrativa del residencial.</span>
+</td>
+    </tr>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">1.3.1 Registro Formal de Incidente</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Campo obligatorio</th>
+<th>Descripción</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Fecha y hora exacta</div></td>
+<td>Hora de detección del incidente, no de cuando se reporta. Si hay diferencia entre ambas, registrar ambas con nota explicativa.</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Ubicación</div></td>
+<td>Área específica: número de cámara que lo captó, torre, área común, estacionamiento, muelle, etc.</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Descripción del evento</div></td>
+<td>Descripción objetiva de los hechos. Sin opiniones ni juicios. Solo lo observado: "Se observó a persona X haciendo Y en lugar Z a las HH:MM."</td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td><div class="s-name">Personas involucradas</div></td>
+<td>Nombre si se conoce, unidad, descripción física si es desconocido. Número de personas.</td>
+</tr>
+      <tr>
+<td class="sn">5</td>
+<td><div class="s-name">Acciones tomadas</div></td>
+<td>Qué hizo el personal: notificó, llamó al 911, aplicó primer respondiente, evacuó el área, etc.</td>
+</tr>
+      <tr>
+<td class="sn">6</td>
+<td><div class="s-name">Nombre del personal</div></td>
+<td>Nombre completo y cargo de quien registra y de quien intervino en el incidente.</td>
+</tr>
+      <tr>
+<td class="sn">7</td>
+<td><div class="s-name">Evidencia adjunta</div></td>
+<td>Número de cámara y timestamp de grabación relevante. Fotos si aplica. Links a archivos en Google Drive.</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">1.3.2 Clasificación por Nivel</div>
+</div>
+  <div class="level lv1">
+    <div class="level-hdr">Nivel 1 — Menor (registrar y monitorear)</div>
+    <div class="level-body">Ejemplos: queja por ruido resuelta en sitio · vehículo mal estacionado corregido · visitante sin QR que tenía acceso válido por otro medio. Requiere registro en el sistema. No requiere notificación a Jefe de Seguridad si se resolvió sin escalamiento.</div>
+  </div>
+  <div class="level lv2">
+    <div class="level-hdr">Nivel 2 — Moderado (notificar a Jefe de Seguridad)</div>
+    <div class="level-body">Ejemplos: huésped agresivo verbal · intento de ingreso sin QR con insistencia · daño menor a propiedad del residencial · avistamiento de fauna de riesgo en área común. Requiere notificación inmediata al Jefe de Seguridad y registro completo en el sistema.</div>
+  </div>
+  <div class="level lv3">
+    <div class="level-hdr">Nivel 3 — Crítico (activar 911 y cadena de mando completa)</div>
+    <div class="level-body">Ejemplos: intrusión activa · emergencia médica grave · incendio · derrame en laguna · persona agresiva física. Requiere activar 911, notificar a Jefe de Seguridad, Gerencia y Dirección simultáneamente. Activar protocolo específico del Libro III.</div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num">3</div>
+<div class="sec-title">1.3.3 Escalamiento</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:100px">Nivel</th>
+<th>Primer contacto</th>
+<th>Si no responde en 5 min</th>
+<th style="width:160px">Tiempo objetivo de respuesta</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><span class="badge b-g">Nivel 1</span></td>
+<td>Guardia en turno resuelve</td>
+<td>Registrar y monitorear</td>
+<td>Resolución inmediata</td>
+</tr>
+      <tr>
+<td><span class="badge b-a">Nivel 2</span></td>
+<td>Jefe de Seguridad</td>
+<td>Gerencia Administrativa</td>
+<td>&lt; 15 minutos de respuesta</td>
+</tr>
+      <tr>
+<td><span class="badge b-r">Nivel 3</span></td>
+<td>911 + Jefe Seguridad simultáneo</td>
+<td>Dirección General</td>
+<td>&lt; 3 minutos de activación</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 1.3 Gestión de Incidentes</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 2.1 SOLICITUDES ══ -->
+<div class="page" id="p-21-solicitudes">
+  <div class="proc-eyebrow">2.0 Atención a Residentes y Huéspedes · 2.1</div>
+  <h1 class="proc-title">2.1 Recepción de Solicitudes</h1>
+  <p class="proc-subtitle">Canal oficial, registro, tiempo de respuesta y seguimiento hasta cierre</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Se recibe una petición de servicio</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Recepción</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Registrar y asignar responsable</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>Escalar emergencia o falta de respuesta</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Folio, prioridad, asignación y cierre</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Solicitud de servicio"><h2>Solicitud de servicio</h2>
+<div class="flow-start">Solicitud recibida</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">Registrar y determinar prioridad</div>
+<div class="flow-branches">
+<div class="flow-branch stop">
+<b>Emergencia</b>Activar protocolo aplicable</div>
+<div class="flow-branch">
+<b>Operativa</b>Asignar responsable y plazo de atención</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Dar seguimiento y notificar resolución</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Solicitud cerrada</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><table class="info-table">
+    <tr>
+      <td class="it-accent" colspan="2">
+<span class="it-label">Canal oficial</span><span class="it-value">WhatsApp del grupo operativo oficial · Correo de administración · Presencial en recepción. Las solicitudes recibidas por canales no oficiales (WhatsApp personal del personal, llamadas a celular personal) deben redirigirse al canal oficial antes de procesarse.</span>
+</td>
+    </tr>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Procedimiento</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Actividad</th>
+<th>Detalle</th>
+<th style="width:130px">Tiempo objetivo</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Recibir y acusar recibo</div></td>
+<td>Confirmar recepción al residente/PM con un mensaje de acuse: "Recibimos su solicitud. La turnaremos al área responsable."</td>
+<td>Máx. 30 minutos</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Registrar en el sistema</div></td>
+<td>Capturar: tipo de solicitud, unidad, fecha/hora de recepción, nombre del solicitante, descripción y área responsable de atender.</td>
+<td>Inmediato</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Turnar al área responsable</div></td>
+<td>Mantenimiento · Gerencia · Seguridad · Limpieza — según el tipo de solicitud. El área responsable recibe la solicitud por el canal operativo.</td>
+<td>Máx. 1 hora</td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td><div class="s-name">Seguimiento</div></td>
+<td>Si no hay respuesta del área responsable en el tiempo acordado, el recepcionista escala al Jefe del área correspondiente.</td>
+<td>Según tipo</td>
+</tr>
+      <tr>
+<td class="sn">5</td>
+<td><div class="s-name">Cierre y notificación</div></td>
+<td>Al resolver: notificar al solicitante con la solución aplicada. Registrar el cierre en el sistema con evidencia si aplica.</td>
+<td>Post-resolución</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Tiempos de Respuesta por Tipo de Solicitud</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th>Tipo de solicitud</th>
+<th style="width:140px">Tiempo de respuesta</th>
+<th style="width:130px">Área responsable</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td>Emergencia (fuga de agua, falla eléctrica, seguridad)</td>
+<td><strong style="color:var(--red);">Inmediato</strong></td>
+<td><span class="resp resp-r">Mantenimiento / Seguridad</span></td>
+</tr>
+      <tr>
+<td>Solicitud de mantenimiento urgente</td>
+<td>Mismo día hábil</td>
+<td><span class="resp resp-a">Mantenimiento</span></td>
+</tr>
+      <tr>
+<td>Solicitud de mantenimiento ordinario</td>
+<td>Máx. 48 horas hábiles</td>
+<td><span class="resp resp-a">Mantenimiento</span></td>
+</tr>
+      <tr>
+<td>Solicitud administrativa (estados de cuenta, convenios)</td>
+<td>Máx. 24 horas hábiles</td>
+<td><span class="resp resp-g">Gerencia</span></td>
+</tr>
+      <tr>
+<td>Consulta de información general</td>
+<td>Máx. 2 horas en horario de oficina</td>
+<td><span class="resp resp-g">Recepción</span></td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 2.1 Recepción de Solicitudes</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 2.2 QUEJAS ══ -->
+<div class="page" id="p-22-quejas">
+  <div class="proc-eyebrow">2.0 Atención a Residentes y Huéspedes · 2.2</div>
+  <h1 class="proc-title">2.2 Gestión de Quejas</h1>
+  <p class="proc-subtitle">Recepción, documentación, respuesta y registro de quejas de residentes y huéspedes</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Se recibe inconformidad formal</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Recepción / Gerencia</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Escuchar, registrar y contener</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>Escalar reincidencia o afectación relevante</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Folio, respuesta, evidencia y cierre</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Gestión de quejas"><h2>Gestión de quejas</h2>
+<div class="flow-start">Queja recibida</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">Escuchar y registrar con folio</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Resolvible</b>Atender en sitio y documentar</div>
+<div class="flow-branch warn">
+<b>No resoluble</b>Asignar al área responsable y escalar</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Notificar resolución y revisar reincidencia</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Queja cerrada</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Procedimiento</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Actividad</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Escuchar sin interrumpir</div></td>
+<td>Permitir que el residente/huésped exponga completamente su queja antes de responder. No argumentar ni justificar durante la exposición.</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Registrar la queja</div></td>
+<td>Capturar en el sistema: unidad/nombre del quejoso, fecha/hora, descripción exacta de la queja (en sus propias palabras), área involucrada.</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Acusar recibo y dar seguimiento</div></td>
+<td>Informar al quejoso: "Su queja fue registrada con folio [número]. La turnaremos al área responsable y le informaremos la resolución en [plazo según tipo]."</td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td><div class="s-name">Turnar y resolver</div></td>
+<td>El área responsable investiga, aplica la medida correctiva y notifica a Gerencia. Gerencia cierra el caso con el quejoso.</td>
+</tr>
+      <tr>
+<td class="sn">5</td>
+<td><div class="s-name">Cierre formal</div></td>
+<td>Notificar al quejoso la resolución. Registrar el cierre en el sistema con la solución aplicada. Si no hubo resolución: documentar la razón.</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="alert a-amber">
+    <div class="alert-icon">VALIDAR</div>
+    <div class="alert-body">
+<strong>Quejas recurrentes</strong>Si una misma unidad o situación genera más de 3 quejas en 30 días, el caso se escala automáticamente al Comité Operativo para análisis y decisión de medidas correctivas de fondo.</div>
+  </div>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 2.2 Gestión de Quejas</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 2.3 MEDIACIÓN ══ -->
+<div class="page" id="p-23-mediacion">
+  <div class="proc-eyebrow">2.0 Atención a Residentes y Huéspedes · 2.3</div>
+  <h1 class="proc-title">2.3 Mediación de Conflictos</h1>
+  <p class="proc-subtitle">Protocolo para conflictos entre residentes, huéspedes o con el personal del residencial</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Existe conflicto entre personas</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Responsable de turno</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Separar, escuchar y reducir tensión</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>911 si hay amenaza, violencia o riesgo</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Personas, hechos, acuerdos y escalamiento</dd>
+</div>
+</dl></section><figure class="decision-diagram" aria-label="Mediación de conflictos"><h2>Mediación de conflictos</h2>
+<div class="flow-start">Conflicto reportado</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">Clasificar: leve, moderado o grave</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Leve</b>Escucha activa y límites claros</div>
+<div class="flow-branch warn">
+<b>Moderado</b>Notificar al responsable y documentar acuerdo</div>
+<div class="flow-branch stop">
+<b>Grave</b>Alejar al personal y llamar al 911</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Registrar acuerdo o escalamiento</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Conflicto controlado</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><table class="info-table">
+    <tr>
+      <td class="it-red" colspan="2">
+<span class="it-label">Límite del personal</span><span class="it-value">El personal del residencial NO es árbitro ni juez. Su rol en un conflicto es contener, documentar y escalar — nunca tomar partido ni emitir resoluciones vinculantes sobre disputas entre residentes.</span>
+</td>
+    </tr>
+  </table>
+
+  <div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Procedimiento según Nivel de Conflicto</div>
+</div>
+  <div class="level lv1">
+    <div class="level-hdr">Conflicto verbal leve — ruido, estacionamiento, áreas comunes</div>
+    <div class="level-body">El recepcionista o guardia en turno interviene como intermediario neutral. Recuerda a ambas partes las normas del reglamento aplicables al caso. Si se resuelve en sitio: documentar en el sistema como "conflicto resuelto en sitio". Si no se resuelve: escalar a Gerencia.</div>
+  </div>
+  <div class="level lv2">
+    <div class="level-hdr">Conflicto persistente o que involucra daños</div>
+    <div class="level-body">Gerencia Administrativa convoca a las partes por separado para escuchar cada versión. Documenta ambas posiciones. Propone solución basada en el reglamento. Si ambas partes aceptan: se documenta el acuerdo con firmas. Si no hay acuerdo: escalar a Dirección General.</div>
+  </div>
+  <div class="level lv3">
+    <div class="level-hdr">Conflicto grave, agresión física o amenazas</div>
+    <div class="level-body">Llamar al 911 de inmediato. No intentar mediar en situaciones de riesgo físico. Activar Nivel Rojo de seguridad. Documentar todo en el sistema. Notificar a Dirección General. El reglamento prevé la posibilidad de rescisión de contrato de arrendamiento en casos graves.</div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Seguimiento Post-Acuerdo</div>
+</div>
+  <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin-bottom:12px;">Un acuerdo documentado tiene valor formal y genera obligaciones de seguimiento. Cerrar el caso en el sistema sin verificar su cumplimiento anula ese valor.</p>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:120px">Plazo</th>
+<th>Acción de seguimiento</th>
+<th style="width:140px">Responsable</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>48 horas</strong></td>
+<td>Gerencia contacta brevemente a las partes para confirmar que el acuerdo se está respetando. Si ambas partes confirman: se registra "acuerdo cumplido" en el sistema y el caso se cierra.</td>
+<td>Gerencia Administrativa</td>
+</tr>
+      <tr>
+<td><strong>Si hay incumplimiento</strong></td>
+<td>Se reabre el expediente en el sistema con nota de incumplimiento. Se notifica a Dirección General. El acuerdo previo se anexa como antecedente y puede usarse como base para aplicar sanción según el reglamento.</td>
+<td>Gerencia Administrativa</td>
+</tr>
+      <tr>
+<td><strong>Reincidencia del mismo conflicto</strong></td>
+<td>Si el mismo conflicto entre las mismas partes ocurre por segunda vez dentro de los 30 días siguientes al acuerdo, se escala directamente a Dirección General sin pasar por mediación. El historial documentado en el sistema es el respaldo formal.</td>
+<td>Dirección General</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="alert a-amber">
+<div class="alert-icon">VALIDAR</div>
+<div class="alert-body">
+<strong>El acuerdo documentado tiene peso reglamentario.</strong> Si una parte incumple un acuerdo firmado, ese incumplimiento se clasifica como infracción moderada o grave según el daño causado, y aplica la escala de sanciones del Libro VI sección 2.2.</div>
+</div>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 2.3 Mediación de Conflictos</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 2.4 PAQUETERÍA ══ -->
+<div class="page" id="p-24-paqueteria">
+  <div class="proc-eyebrow">2.0 Atención a Residentes y Huéspedes · 2.4</div>
+  <h1 class="proc-title">2.4 Gestión de Paquetería</h1>
+  <p class="proc-subtitle">Recepción, custodia, notificación y entrega de paquetes y correspondencia</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Mensajería entrega un paquete</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Recepción</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Verificar destinatario antes de recibir</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>No recibir si no puede identificarse o resguardarse</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Foto, guía, custodia, aviso y firma</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Custodia de paquetería"><h2>Custodia de paquetería</h2>
+<div class="flow-start">Paquete llega a recepción</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">¿Destinatario identificable y custodia disponible?</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Sí</b>Fotografiar guía, registrar y resguardar</div>
+<div class="flow-branch stop">
+<b>No</b>No recibir; explicar el motivo al mensajero</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Notificar, entregar con firma y cerrar</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Paquete entregado</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Procedimiento</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:36px">#</th>
+<th style="width:180px">Actividad</th>
+<th>Detalle</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td class="sn">1</td>
+<td><div class="s-name">Recibir el paquete</div></td>
+<td>Verificar que el nombre del destinatario coincide con un residente registrado. No recibir paquetes sin destinatario identificado o con nombres que no corresponden al padrón.</td>
+</tr>
+      <tr>
+<td class="sn">2</td>
+<td><div class="s-name">Registrar en el sistema</div></td>
+<td>Capturar: descripción del paquete (tamaño, empresa de paquetería, número de guía si visible), unidad destinataria, fecha y hora de recepción, nombre de quien lo recibió.</td>
+</tr>
+      <tr>
+<td class="sn">3</td>
+<td><div class="s-name">Fotografiar y custodiar</div></td>
+<td>Tomar foto del paquete con número de guía visible. Guardar en área de custodia segura (no dejar en área abierta o sin supervisión).</td>
+</tr>
+      <tr>
+<td class="sn">4</td>
+<td><div class="s-name">Notificar al destinatario</div></td>
+<td>Notificar por WhatsApp oficial del residencial al PM/Propietario de la unidad con foto del paquete. Máx. 30 minutos tras la recepción.</td>
+</tr>
+      <tr>
+<td class="sn">5</td>
+<td><div class="s-name">Entrega y cierre</div></td>
+<td>Entregar solo al residente/PM registrado en Vivook o a la persona que el PM designe explícitamente por escrito. Registrar entrega en el sistema con firma o confirmación escrita del receptor.</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="alert a-amber">
+<div class="alert-icon">VALIDAR</div>
+<div class="alert-body">
+<strong>Paquetes no reclamados</strong>Si un paquete no es reclamado en 7 días: segunda notificación por correo formal. Si no es reclamado en 15 días: notificar a Dirección General para decidir el destino del paquete según política del reglamento interno.</div>
+</div>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Paquete con Destinatario No Registrado en Vivook</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th style="width:200px">Situación</th>
+<th>Procedimiento</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td><strong>Nombre no coincide con ningún residente</strong></td>
+<td>No recibir. Informar al delivery que el destinatario no está en el padrón del residencial. Solicitar que se devuelva o reagende. Registrar el intento de entrega en el sistema (empresa, guía, hora). No se almacena el paquete.</td>
+</tr>
+      <tr>
+<td><strong>Posible residente nuevo o reciente mudanza</strong></td>
+<td>Si el delivery indica que es para una unidad específica, el recepcionista contacta por WhatsApp al PM de esa unidad para confirmar. Si el PM confirma en 10 minutos: recibir con el proceso estándar y agregar nota en el sistema. Si no hay respuesta: no recibir, registrar intento.</td>
+</tr>
+      <tr>
+<td><strong>Paquete sin destinatario legible</strong></td>
+<td>No recibir bajo ninguna circunstancia. Solicitar al delivery que aclare destinatario con su centro de distribución antes de volver.</td>
+</tr>
+      <tr>
+<td><strong>Delivery insiste o deja el paquete sin consentimiento</strong></td>
+<td>Fotografiar el paquete, registrar empresa y guía en el sistema, notificar a Jefe de Seguridad y Gerencia. No mover ni abrir el paquete. Gerencia decide en máx. 2 horas si se devuelve o custodia temporalmente.</td>
+</tr>
+    </tbody>
+  </table>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 2.4 Gestión de Paquetería</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+<!-- ══ 2.5 COMUNICACIÓN ══ -->
+<div class="page" id="p-25-comunicacion">
+  <div class="proc-eyebrow">2.0 Atención a Residentes y Huéspedes · 2.5</div>
+  <h1 class="proc-title">2.5 Comunicación Oficial</h1>
+  <p class="proc-subtitle">Canales autorizados, tono institucional y política de comunicación con residentes</p>
+<section class="quick" aria-label="Consulta rápida"><h2>Consulta rápida</h2>
+<dl>
+<div>
+<dt>Cuándo usarlo</dt>
+<dd>Debe emitirse un aviso</dd>
+</div>
+<div>
+<dt>Responsable</dt>
+<dd>Área responsable / Gerencia</dd>
+</div>
+<div>
+<dt>Primera acción</dt>
+<dd>Elegir canal y validar contenido</dd>
+</div>
+<div>
+<dt>Escalar si…</dt>
+<dd>Escalar datos personales o postura institucional</dd>
+</div>
+<div>
+<dt>Registrar</dt>
+<dd>Versión, autorización, canal y evidencia</dd>
+</div>
+</dl></section><aside class="notice is-reference"><b>Validación obligatoria</b><p>Los plazos, horarios, autorizaciones, retenciones y criterios de esta sección son REFERENCIA hasta vincularlos con la política, contrato, aviso de privacidad o nombramiento vigente.</p></aside><figure class="decision-diagram" aria-label="Comunicación oficial"><h2>Comunicación oficial</h2>
+<div class="flow-start">Comunicación por emitir</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-decision">Definir urgencia, audiencia y datos incluidos</div>
+<div class="flow-branches">
+<div class="flow-branch">
+<b>Operativa</b>Usar canal institucional autorizado</div>
+<div class="flow-branch warn">
+<b>Formal o con datos</b>Obtener autorización antes de enviar</div>
+</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-step">Registrar versión y evidencia del envío</div>
+<div class="flow-arrow">↓</div>
+<div class="flow-end">Comunicado enviado</div>
+<p class="flow-note">Si una condición cambia o aumenta el riesgo, detener la ruta y escalar al nivel correspondiente.</p></figure><div class="sec-h">
+<div class="sec-num">1</div>
+<div class="sec-title">Canales Oficiales del Residencial</div>
+</div>
+  <div class="info-grid-3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;">
+    <div class="info-card">
+<div class="ic-label">WhatsApp Operativo</div>
+<div class="ic-title">Grupo oficial del residencial</div>
+<div class="ic-body">Para comunicaciones urgentes y operativas. Solo personal autorizado puede publicar. Residentes no responden en este canal — es de transmisión.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Correo Electrónico</div>
+<div class="ic-title"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b0d1d4ddd9ded9c3c4c2d1d3d9dfdef0d1dcd4d5d1ddd1c9d1d29eddc8">[email protected]</a></div>
+<div class="ic-body">Para comunicaciones formales, estados de cuenta, convenios y documentos. Tiempo de respuesta: máx. 24h hábiles.</div>
+</div>
+    <div class="info-card">
+<div class="ic-label">Vivook</div>
+<div class="ic-title">Notificaciones automáticas</div>
+<div class="ic-body">QRs de acceso, estados de cuenta, alertas de moroso y confirmaciones de reservas. Canal automático del sistema.</div>
+</div>
+  </div>
+
+  <div class="sec-h">
+<div class="sec-num">2</div>
+<div class="sec-title">Política de Comunicación Institucional</div>
+</div>
+  <table class="act-table">
+    <thead><tr>
+<th>Tipo de comunicación</th>
+<th>Canal</th>
+<th style="width:160px">Quién autoriza</th>
+</tr></thead>
+    <tbody>
+      <tr>
+<td>Aviso de mantenimiento programado en áreas comunes</td>
+<td>WhatsApp operativo + Vivook</td>
+<td>Gerencia Administrativa</td>
+</tr>
+      <tr>
+<td>Cobros, adeudos y estados de cuenta</td>
+<td>Correo oficial + Vivook</td>
+<td>Gerencia Administrativa</td>
+</tr>
+      <tr>
+<td>Convocatoria a Asamblea</td>
+<td>Correo oficial + escrito físico</td>
+<td>Dirección General</td>
+</tr>
+      <tr>
+<td>Alertas de seguridad (emergencias, intrusos)</td>
+<td>WhatsApp operativo inmediato</td>
+<td>Jefe de Seguridad</td>
+</tr>
+      <tr>
+<td>Cambios al reglamento o tarifas</td>
+<td>Correo oficial + escrito físico</td>
+<td>Dirección General post-Asamblea</td>
+</tr>
+      <tr>
+<td>Respuesta a quejas individuales</td>
+<td>Correo o WhatsApp al PM/Propietario</td>
+<td>Gerencia Administrativa</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="alert a-red">
+<div class="alert-icon">CRÍTICO</div>
+<div class="alert-body">
+<strong>Prohibido</strong>El personal no puede emitir comunicaciones institucionales desde canales personales (WhatsApp personal, correo personal, redes sociales). Tampoco puede comprometer posiciones del residencial en conversaciones informales con residentes sobre temas regulatorios o legales.</div>
+</div>
+  <div class="proc-footer">
+<span>LIB-AM-02 · v13.0 · Libro II · 2.5 Comunicación Oficial</span><span>Confidencial — Residencial Aldea Mayab</span>
+</div>
+</div>
+
+  </div>
+<!-- /content -->
+</div>
+<!-- /main -->
+
+
+
+<script>
+const PAGES = {
+  'p-cover':             '1.0 Sistema Integral de Seguridad · Portada',
+  'p-11-gov':            '1.0 Sistema Integral de Seguridad · 1.1 Gobierno de Seguridad',
+  'p-12-accesos':        '1.0 Sistema Integral de Seguridad · 1.2 Control de Accesos',
+  'p-12-vehicular':      '1.0 Sistema Integral de Seguridad · 1.2 Control Vehicular y Barrera',
+  'p-12-proveedores':    '1.0 Sistema Integral de Seguridad · 1.2 Control de Proveedores',
+  'p-12-huespedes':      '1.0 Sistema Integral de Seguridad · 1.2 Gestión de Huéspedes',
+  'p-12-cctv':           '1.0 Sistema Integral de Seguridad · 1.2 CCTV',
+  'p-12-alerta':         '1.0 Sistema Integral de Seguridad · 1.2 Nivel de Alerta Elevado',
+  'p-13-incidentes':     '1.0 Sistema Integral de Seguridad · 1.3 Gestión de Incidentes',
+  'p-21-solicitudes':    '2.0 Atención a Residentes · 2.1 Solicitudes de Servicio',
+  'p-22-quejas':         '2.0 Atención a Residentes · 2.2 Quejas y Reclamaciones',
+  'p-23-mediacion':      '2.0 Atención a Residentes · 2.3 Mediación de Conflictos',
+  'p-24-paqueteria':     '2.0 Atención a Residentes · 2.4 Paquetería y Entregas',
+  'p-25-comunicacion':   '2.0 Atención a Residentes · 2.5 Comunicación Oficial',
+};
+function show(id,updateHash=true){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link,.nav-sub').forEach(n=>n.classList.remove('active'));
+  const page=document.getElementById(id);
+  if(page)page.classList.add('active');
+  const label=PAGES[id]||'';
+  const parts=label.split(' · ');
+  const bc=document.getElementById('breadcrumb');
+  bc.innerHTML='Libro II &rsaquo; '+parts.slice(0,-1).join(' &rsaquo; ')+' &rsaquo; <strong>'+parts[parts.length-1]+'</strong>';
+  document.querySelectorAll('.nav-link,.nav-sub').forEach(el=>{
+    if((el.getAttribute('onclick')||'').includes("'"+id+"'"))el.classList.add('active');
+  });
+  if(updateHash&&location.hash!=='#'+id)history.pushState(null,'','#'+id);
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(window.innerWidth<=768&&window.closeSidebar)window.closeSidebar();
+}
+function toggleGroup(btn){
+  const grp=btn.closest('.nav-group');
+  const wasOpen=grp.classList.contains('open');
+  document.querySelectorAll('.nav-group').forEach(g=>g.classList.remove('open'));
+  document.querySelectorAll('.nav-group-btn').forEach(b=>b.classList.remove('active'));
+  if(!wasOpen){grp.classList.add('open');btn.classList.add('active');}
+}
+function searchNav(val){
+  const v=val.toLowerCase().trim();
+  document.querySelectorAll('.nav-link,.nav-sub').forEach(el=>{
+    if(!v){el.style.display='';el.classList.remove('hl');}
+    else{
+      const match=el.textContent.toLowerCase().includes(v);
+      el.style.display=match?'':'none';
+      el.classList.toggle('hl',match);
+      if(match)el.closest('.nav-group')?.classList.add('open');
+    }
+  });
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){const inp=document.querySelector('.sb-search input');inp.value='';searchNav('');inp.blur();}
+});
+(function(){
+  function _open(){
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('hamburger').classList.add('open');
+    document.getElementById('overlay').classList.add('visible');
+    document.body.style.overflow='hidden';
+  }
+  function _close(){
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('overlay').classList.remove('visible');
+    document.body.style.overflow='';
+  }
+  window.toggleSidebar=function(){
+    if(document.getElementById('sidebar').classList.contains('open')){_close();}else{_open();}
+  };
+  window.closeSidebar=_close;
+  function init(){
+    var hb=document.getElementById('hamburger');
+    var ov=document.getElementById('overlay');
+    if(hb){
+      hb.addEventListener('click',function(e){e.stopPropagation();window.toggleSidebar();});
+      hb.addEventListener('touchend',function(e){e.preventDefault();e.stopPropagation();window.toggleSidebar();},{passive:false});
+    }
+    if(ov){
+      ov.addEventListener('click',_close);
+      ov.addEventListener('touchend',function(e){e.preventDefault();_close();},{passive:false});
+    }
+  }
+
+  // Deep-link: si la URL tiene #p-XX al abrir, navegar directamente a esa página
+  function handleDeepLink(){
+    var hash = window.location.hash;
+    if(hash){
+      var id = hash.replace('#','');
+      if(document.getElementById(id)){
+        show(id,false);
+      }
+    }
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', function(){ init(); handleDeepLink(); });
+  } else {
+    init(); handleDeepLink();
+  }
+
+})();
+
+
+window.addEventListener('popstate',()=>{const id=location.hash.slice(1);if(document.getElementById(id))show(id,false);});
+</script>
+  <div id="errorBloqueo" style="position:fixed;top:0;left:0;width:100%;height:100%;
+  background:#fff;color:#333;z-index:999999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:sans-serif;text-align:center;padding:2rem;">
+  <h1 style="font-size:3rem;margin:0;">:(</h1>
+  <p style="font-size:1.2rem;max-width:500px;">
+    An unknown error occurred and the page could not be loaded. Please contact the site administrator.
+  </p>
+</div>
+<style>body{overflow:hidden!important;}</style>
+</body>
+</html>
